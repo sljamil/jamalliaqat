@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamal Liaqat — Electronics Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #040d0a;
+    --bg2: #071410;
+    --card: #0a1f1a;
+    --border: #0fff6a22;
+    --green: #00ff88;
+    --cyan: #00e5ff;
+    --orange: #ff6b00;
+    --text: #c8fde8;
+    --muted: #5a9a7a;
+    --grid: #0fff6a08;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── CIRCUIT GRID BACKGROUND ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── SCANLINES ─── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0,255,136,0.015) 2px,
+      rgba(0,255,136,0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+    background: rgba(4,13,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--green);
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px var(--green);
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--green); text-shadow: 0 0 10px var(--green); }
+
+  /* ─── SECTIONS ─── */
+  section { position: relative; z-index: 1; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .hero-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--cyan);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-tag::before { content: '>> '; color: var(--orange); }
+
+  .hero-name {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(0,255,136,0.3);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-name span { color: var(--green); }
+
+  .hero-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--cyan);
+    margin-top: 1rem;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-desc {
+    max-width: 600px;
+    margin-top: 1.5rem;
+    line-height: 1.8;
+    color: var(--muted);
+    font-size: 0.95rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .btn {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    padding: 0.75rem 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 1px solid var(--green);
+    color: var(--green);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--green);
+    transform: translateX(-101%);
+    transition: transform 0.3s;
+    z-index: -1;
+  }
+
+  .btn:hover { color: var(--bg); }
+  .btn:hover::before { transform: translateX(0); }
+
+  .btn-outline {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+  .btn-outline::before { background: var(--cyan); }
+
+  /* ─── SECTION TEMPLATE ─── */
+  .section-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--orange);
+    letter-spacing: 2px;
+  }
+
+  .section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--green), transparent);
+    opacity: 0.4;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: rgba(0,255,136,0.02); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .avatar-frame {
+    width: 180px;
+    height: 180px;
+    border: 2px solid var(--green);
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 0 30px rgba(0,255,136,0.2);
+  }
+
+  .avatar-frame::before, .avatar-frame::after {
+    content: '';
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: var(--cyan);
+    border-style: solid;
+    z-index: 2;
+  }
+  .avatar-frame::before { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
+  .avatar-frame::after  { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
+
+  .avatar-placeholder {
+    width: 100%; height: 100%;
+    background: var(--card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .avatar-icon { font-size: 3.5rem; }
+
+  .avatar-placeholder span {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-align: center;
+  }
+
+  .about-text p { line-height: 1.9; color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+  .about-text p strong { color: var(--green); font-weight: 600; }
+
+  .about-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    border-left: 2px solid var(--green);
+    padding-left: 1rem;
+  }
+
+  .stat-val {
+    font-family: 'Orbitron', monospace;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    position: relative;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--green);
+    box-shadow: 0 0 20px rgba(0,255,136,0.1);
+  }
+
+  .skill-card-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    letter-spacing: 1px;
+    background: rgba(0,255,136,0.04);
+    transition: all 0.2s;
+  }
+
+  .tag:hover { border-color: var(--green); color: var(--green); }
+
+  /* ─── EXPERIENCE ─── */
+  .timeline { position: relative; padding-left: 2rem; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, var(--green), transparent);
+    opacity: 0.4;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.37rem;
+    top: 0.35rem;
+    width: 10px; height: 10px;
+    border: 2px solid var(--green);
+    background: var(--bg);
+    transform: rotate(45deg);
+    box-shadow: 0 0 10px rgba(0,255,136,0.5);
+  }
+
+  .timeline-date {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--orange);
+    letter-spacing: 2px;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-role {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-company {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--cyan);
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+  }
+
+  .timeline-desc {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.8;
+  }
+
+  .timeline-desc li { margin-bottom: 0.3rem; list-style: none; padding-left: 1rem; position: relative; }
+  .timeline-desc li::before { content: '▸ '; position: absolute; left: 0; color: var(--green); }
+
+  /* ─── PROJECTS ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--green), var(--cyan));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .project-card:hover { border-color: rgba(0,255,136,0.3); transform: translateY(-4px); }
+  .project-card:hover::before { transform: scaleX(1); }
+
+  .project-num {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--orange);
+    letter-spacing: 2px;
+    margin-bottom: 0.8rem;
+  }
+
+  .project-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .project-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .tech-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    color: var(--cyan);
+    letter-spacing: 1px;
+  }
+
+  /* ─── EDUCATION ─── */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    position: relative;
+  }
+
+  .edu-card::after {
+    content: attr(data-year);
+    position: absolute;
+    top: 1.2rem; right: 1.2rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--orange);
+    letter-spacing: 2px;
+  }
+
+  .edu-degree {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .edu-school {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-location {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ─── CERTS & HONORS ─── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .cert-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.2rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+
+  .cert-item:hover { border-color: var(--green); }
+
+  .cert-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .cert-info {}
+  .cert-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+    line-height: 1.4;
+  }
+
+  .cert-meta {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  /* ─── PUBLICATIONS ─── */
+  .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+
+  .pub-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--cyan);
+    padding: 1.5rem;
+    transition: border-color 0.3s;
+  }
+
+  .pub-item:hover { border-color: var(--cyan); box-shadow: -4px 0 20px rgba(0,229,255,0.15); }
+
+  .pub-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 0.4rem;
+    line-height: 1.5;
+  }
+
+  .pub-meta {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--cyan);
+    letter-spacing: 1px;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { border-top: 1px solid var(--border); }
+
+  .contact-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .contact-title {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 900;
+    color: #fff;
+  }
+
+  .contact-title span { color: var(--green); }
+
+  .contact-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 1px;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .contact-link:hover { color: var(--green); border-color: var(--green); box-shadow: 0 0 15px rgba(0,255,136,0.15); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    border-top: 1px solid var(--border);
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ─── GLITCH CURSOR ─── */
+  .glitch {
+    position: relative;
+    display: inline-block;
+  }
+  .glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 2px; top: 0;
+    color: var(--cyan);
+    clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+    animation: glitch 4s infinite;
+    opacity: 0.5;
+  }
+
+  @keyframes glitch {
+    0%, 90%, 100% { transform: none; opacity: 0; }
+    91% { transform: translateX(-4px); opacity: 0.5; }
+    93% { transform: translateX(4px); opacity: 0.4; }
+    95% { transform: none; opacity: 0.5; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .section-wrap { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .avatar-frame { margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">JL.EE</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-tag">Electronics Engineer // Analog & Biomedical Circuits</div>
+  <h1 class="hero-name glitch" data-text="JAMAL LIAQAT">JAMAL <span>LIAQAT</span></h1>
+  <div class="hero-title">Research Associate &nbsp;•&nbsp; PCB Designer &nbsp;•&nbsp; Embedded Systems</div>
+  <p class="hero-desc">
+    Avionics engineering graduate with hands-on expertise in analog circuit design, biomedical instrumentation, PCB fabrication, and microcontroller programming. Currently building scientific instruments at Qosain Scientific, Lahore.
+  </p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn">View Projects</a>
+    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="section-num">// 01</span>
+      <h2 class="section-title">ABOUT ME</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid reveal">
+      <div class="avatar-frame">
+        <div class="avatar-placeholder">
+          <span class="avatar-icon">⚙️</span>
+          <span>ADD PHOTO<br>HERE</span>
+        </div>
+      </div>
+      <div class="about-text">
+        <p>I'm <strong>Jamal Liaqat</strong>, an Electronics Engineer and Research Associate at <strong>Qosain Scientific</strong>, Lahore. I hold a BS in Avionics Engineering from the <strong>College of Aeronautical Engineering, NUST</strong>.</p>
+        <p>My work sits at the intersection of analog electronics, biomedical instrumentation, and embedded systems. I design circuits that measure the world — from blood pressure waveforms to the bioelectrical responses of plants.</p>
+        <p>I thrive in research environments that demand precision: designing PCBs, building signal conditioning pipelines, writing firmware, and documenting it all clearly. I also bring web development skills with WordPress to help communicate science to broader audiences.</p>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-val">2+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">6+</div>
+            <div class="stat-label">Projects</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">NUST</div>
+            <div class="stat-label">BS Avionics Eng.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="section-num">// 02</span>
+      <h2 class="section-title">SKILLS & TOOLS</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Simulation & Design</div>
+        <div class="skill-tags">
+          <span class="tag">MATLAB</span>
+          <span class="tag">Ansys HFSS</span>
+          <span class="tag">EasyEDA</span>
+          <span class="tag">Altium</span>
+          <span class="tag">LTSpice</span>
+          <span class="tag">SolidWorks</span>
+          <span class="tag">Fusion 360</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Embedded Systems</div>
+        <div class="skill-tags">
+          <span class="tag">Arduino IDE</span>
+          <span class="tag">AVR Microcontrollers</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Circuit Interfacing</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Programming</div>
+        <div class="skill-tags">
+          <span class="tag">MATLAB</span>
+          <span class="tag">Python</span>
+          <span class="tag">LaTeX</span>
+          <span class="tag">AVR C</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Domains</div>
+        <div class="skill-tags">
+          <span class="tag">Analog Circuit Design</span>
+          <span class="tag">PCB Fabrication</span>
+          <span class="tag">Biomedical Circuits</span>
+          <span class="tag">Signal Processing</span>
+          <span class="tag">RF / Antenna</span>
+          <span class="tag">Instrumentation</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-card-title">Web & Documentation</div>
+        <div class="skill-tags">
+          <span class="tag">WordPress</span>
+          <span class="tag">Elementor</span>
+          <span class="tag">WooCommerce</span>
+          <span class="tag">SEO</span>
+          <span class="tag">Technical Writing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background: rgba(0,255,136,0.015); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="section-num">// 03</span>
+      <h2 class="section-title">EXPERIENCE</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">SEP 2025 — PRESENT</div>
+        <div class="timeline-role">Research Associate / Electronics Engineer</div>
+        <div class="timeline-company">Qosain Scientific — Lahore, Pakistan</div>
+        <ul class="timeline-desc">
+          <li>Analog circuit design, PCB design and fabrication, biomedical circuits</li>
+          <li>Microcontroller programming and circuit interfacing</li>
+          <li>Electronics troubleshooting, debugging and quality assurance</li>
+          <li>Developed 3D models to support product prototyping and development</li>
+          <li>Designed low-cost DIY Potentiostat with integrated GUI for electrochemical analysis</li>
+          <li>Designed blood pressure measurement circuitry with signal conditioning</li>
+          <li>Developed electronic circuitry to measure bioelectrical responses of Mimosa pudica</li>
+        </ul>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">JAN 2025 — AUG 2025</div>
+        <div class="timeline-role">Instrument Developer</div>
+        <div class="timeline-company">Qosain Scientific — Lahore, Pakistan</div>
+        <ul class="timeline-desc">
+          <li>Designed experimental setups for PhysLab with focus on electronics and instrumentation</li>
+          <li>Developed and validated hardware-based action potential synthesizer</li>
+          <li>Analog and digital circuit troubleshooting and debugging</li>
+          <li>Designed Qosain Scientific website using WordPress, Elementor and WooCommerce</li>
+        </ul>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">MAY 2025 — JUN 2025</div>
+        <div class="timeline-role">Research Assistant</div>
+        <div class="timeline-company">LUMS (PhysLab) — Lahore, Pakistan</div>
+        <ul class="timeline-desc">
+          <li>Contributed to design, calibration and validation of experimental physics systems</li>
+          <li>Under supervision of Dr. Sabieh Anwar</li>
+          <li>Developed magnetic damping (eddy currents) experimental setup with full technical documentation</li>
+        </ul>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">APR 2023</div>
+        <div class="timeline-role">Electronics Engineering Intern</div>
+        <div class="timeline-company">Electrical Engineering Services — Lahore</div>
+        <ul class="timeline-desc"><li>Hands-on electronics engineering internship</li></ul>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">SEP 2022</div>
+        <div class="timeline-role">Avionics Engineering Intern</div>
+        <div class="timeline-company">PAC Kamra — Attock, Pakistan</div>
+        <ul class="timeline-desc"><li>Avionics systems internship at Pakistan Aeronautical Complex</li></ul>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">NOV 2020 — APR 2023</div>
+        <div class="timeline-role">Freelance Math Expert</div>
+        <div class="timeline-company">Photomath — Zagreb, Croatia (Remote)</div>
+        <ul class="timeline-desc"><li>International math expert contributor for Photomath app</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="section-num">// 04</span>
+      <h2 class="section-title">PROJECTS</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT_01 // FYP</div>
+        <div class="project-title">Non-Invasive Glucose Monitoring Using Near-Infrared</div>
+        <div class="project-desc">Developed a NIR spectroscopy-based glucose sensor prototype for aqueous solutions, fruit samples, and non-invasive human testing. Supervised by Dr. Adnan Shah and Dr. Waqar Ahmad.</div>
+        <div class="project-tech"><span class="tech-tag">NIR Spectroscopy</span><span class="tech-tag">Signal Processing</span><span class="tech-tag">MATLAB</span></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT_02 // Biomedical</div>
+        <div class="project-title">DIY Potentiostat with Integrated GUI</div>
+        <div class="project-desc">Designed and developed a low-cost potentiostat for electrochemical analysis of solutions, complete with an integrated graphical user interface for real-time data visualization.</div>
+        <div class="project-tech"><span class="tech-tag">Analog Design</span><span class="tech-tag">PCB</span><span class="tech-tag">GUI</span></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT_03 // Biomedical</div>
+        <div class="project-title">Blood Pressure Measurement Circuitry</div>
+        <div class="project-desc">Designed circuitry with signal conditioning and processing for extraction of key physiological parameters from blood pressure waveforms.</div>
+        <div class="project-tech"><span class="tech-tag">Signal Conditioning</span><span class="tech-tag">Analog</span><span class="tech-tag">PCB</span></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT_04 // Biophysics</div>
+        <div class="project-title">Bioelectrical Response of Mimosa Pudica</div>
+        <div class="project-desc">Electronic circuitry to measure bioelectrical signals in the sensitive plant Mimosa pudica in response to external stimuli — bridging electronics and plant biophysics.</div>
+        <div class="project-tech"><span class="tech-tag">Biophysics</span><span class="tech-tag">Instrumentation</span><span class="tech-tag">Embedded</span></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT_05 // Control Systems</div>
+        <div class="project-title">PID-Controlled Self-Balancing Robot</div>
+        <div class="project-desc">Self-balancing robot using a PID controller implemented in MATLAB with LEGO Mindstorms EV3 hardware.</div>
+        <div class="project-tech"><span class="tech-tag">MATLAB</span><span class="tech-tag">PID</span><span class="tech-tag">LEGO EV3</span></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT_06 // RF</div>
+        <div class="project-title">Reconfigurable Dual-Band Antenna</div>
+        <div class="project-desc">Designed a reconfigurable dual-band antenna using a shared aperture approach, simulated and optimized in Ansys HFSS.</div>
+        <div class="project-tech"><span class="tech-tag">HFSS</span><span class="tech-tag">RF Design</span><span class="tech-tag">Antenna</span></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT_07 // SDR</div>
+        <div class="project-title">SDR-Based FM Transceiver</div>
+        <div class="project-desc">Designed a software-defined radio FM transceiver for real-time audio transmission and reception, implemented in MATLAB.</div>
+        <div class="project-tech"><span class="tech-tag">SDR</span><span class="tech-tag">MATLAB</span><span class="tech-tag">FM</span></div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-num">PROJECT_08 // Radar</div>
+        <div class="project-title">KLD-7 Radar — Distance Measurement</div>
+        <div class="project-desc">Implemented KLD-7 radar for real-time distance measurement with LCD display output and MATLAB signal processing pipeline.</div>
+        <div class="project-tech"><span class="tech-tag">Radar</span><span class="tech-tag">MATLAB</span><span class="tech-tag">AVR</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background: rgba(0,255,136,0.015); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="section-num">// 05</span>
+      <h2 class="section-title">EDUCATION</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal" data-year="2023">
+        <div class="edu-degree">BS Avionics Engineering</div>
+        <div class="edu-school">NUST — College of Aeronautical Engineering</div>
+        <div class="edu-location">📍 Risalpur, Pakistan &nbsp;|&nbsp; Grad. Sep 2023</div>
+      </div>
+      <div class="edu-card reveal" data-year="2019">
+        <div class="edu-degree">Intermediate</div>
+        <div class="edu-school">Govt. Degree College</div>
+        <div class="edu-location">📍 Fatehpur, Pakistan &nbsp;|&nbsp; Grad. Sep 2019</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem;">
+      <h3 style="font-family:'Orbitron',monospace; font-size:1rem; color:var(--cyan); letter-spacing:2px; margin-bottom:1.5rem;">CERTIFICATES & HONORS</h3>
+      <div class="certs-grid">
+        <div class="cert-item reveal">
+          <div class="cert-icon">🔬</div>
+          <div class="cert-info">
+            <div class="cert-title">Advanced Workshop on Circuit Theory, Measurements and Design</div>
+            <div class="cert-meta">Hardware-X / Prof. Asad Ali Abidi — 2025</div>
+          </div>
+        </div>
+        <div class="cert-item reveal">
+          <div class="cert-icon">🔭</div>
+          <div class="cert-info">
+            <div class="cert-title">Science Demonstrator</div>
+            <div class="cert-meta">Lahore Science Mela (LSM) — 2025</div>
+          </div>
+        </div>
+        <div class="cert-item reveal">
+          <div class="cert-icon">🏆</div>
+          <div class="cert-info">
+            <div class="cert-title">Social Media Head — Hult Prize</div>
+            <div class="cert-meta">International — 2022–2023</div>
+          </div>
+        </div>
+        <div class="cert-item reveal">
+          <div class="cert-icon">🛩️</div>
+          <div class="cert-info">
+            <div class="cert-title">Adventure Club Head — The Aviators Society</div>
+            <div class="cert-meta">NUST — 2020–2023</div>
+          </div>
+        </div>
+        <div class="cert-item reveal">
+          <div class="cert-icon">📐</div>
+          <div class="cert-info">
+            <div class="cert-title">International Math Expert</div>
+            <div class="cert-meta">Photomath — 2020–2023</div>
+          </div>
+        </div>
+        <div class="cert-item reveal">
+          <div class="cert-icon">📜</div>
+          <div class="cert-info">
+            <div class="cert-title">Digital Marketing & Freelancing</div>
+            <div class="cert-meta">DigiSkills — 2021</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="section-wrap">
+    <div class="section-header reveal">
+      <span class="section-num">// 06</span>
+      <h2 class="section-title">PUBLICATIONS</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="pub-list">
+      <div class="pub-item reveal">
+        <div class="pub-title">Add your publication title here — e.g. "Design and Development of a Low-Cost Potentiostat for Electrochemical Analysis"</div>
+        <div class="pub-meta">Journal / Conference Name &nbsp;•&nbsp; Year &nbsp;•&nbsp; Authors</div>
+      </div>
+      <div class="pub-item reveal">
+        <div class="pub-title">Add your second publication title here</div>
+        <div class="pub-meta">Journal / Conference Name &nbsp;•&nbsp; Year &nbsp;•&nbsp; Authors</div>
+      </div>
+    </div>
+    <p style="font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--muted); margin-top:1.5rem; letter-spacing:1px;">
+      // Update the publication entries above with your actual publications before publishing.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="contact-inner reveal">
+      <div class="contact-title">LET'S <span>CONNECT</span></div>
+      <p style="color:var(--muted); max-width:500px; line-height:1.8; font-size:0.9rem;">Open to research collaborations, freelance electronics projects, and full-time opportunities in electronics engineering and instrumentation.</p>
+      <div class="contact-links">
+        <a href="mailto:jamalliaqat101ly@gmail.com" class="contact-link">
+          <span>✉</span> jamalliaqat101ly@gmail.com
+        </a>
+        <a href="https://linkedin.com/in/jamal-liaqat" target="_blank" class="contact-link">
+          <span>in</span> jamal-liaqat
+        </a>
+        <a href="tel:+92344179001" class="contact-link">
+          <span>📞</span> +92 344 179 001
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2025 JAMAL LIAQAT &nbsp;•&nbsp; ELECTRONICS ENGINEER &nbsp;•&nbsp; LAHORE, PAKISTAN
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
