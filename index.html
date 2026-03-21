@@ -613,6 +613,37 @@
     letter-spacing: 1px;
   }
 
+  /* ─── PROJECT CATEGORIES ─── */
+  .proj-category { margin-bottom: 1.2rem; }
+
+  .proj-category-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(0,255,136,0.04);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--green);
+  }
+
+  .proj-cat-icon { font-size: 1.1rem; }
+
+  .proj-cat-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 2px;
+  }
+
+  .proj-cat-sub {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-left: auto;
+  }
+
   /* ─── CONTACT ─── */
   #contact { border-top: 1px solid var(--border); }
 
@@ -927,56 +958,106 @@
       <h2 class="section-title">PROJECTS</h2>
       <div class="section-line"></div>
     </div>
-    <div class="projects-grid">
-      <div class="project-card reveal">
-        <div class="project-num">PROJECT_01 // FYP</div>
-        <div class="project-title">Non-Invasive Glucose Monitoring Using Near-Infrared</div>
-        <div class="project-desc">Developed a NIR spectroscopy-based glucose sensor prototype for aqueous solutions, fruit samples, and non-invasive human testing. Supervised by Dr. Adnan Shah and Dr. Waqar Ahmad.</div>
-        <div class="project-tech"><span class="tech-tag">NIR Spectroscopy</span><span class="tech-tag">Signal Processing</span><span class="tech-tag">MATLAB</span></div>
+
+    <!-- CATEGORY 1: PROFESSIONAL -->
+    <div class="proj-category reveal">
+      <div class="proj-category-label">
+        <span class="proj-cat-icon">💼</span>
+        <span class="proj-cat-title">PROFESSIONAL PROJECTS</span>
+        <span class="proj-cat-sub">// Qosain Scientific & LUMS</span>
       </div>
-      <div class="project-card reveal">
-        <div class="project-num">PROJECT_02 // Biomedical</div>
+    </div>
+    <div class="projects-grid" style="margin-bottom: 3.5rem;">
+      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
+        <div class="project-num">PRO_01 // Electrochemistry</div>
         <div class="project-title">DIY Potentiostat with Integrated GUI</div>
-        <div class="project-desc">Designed and developed a low-cost potentiostat for electrochemical analysis of solutions, complete with an integrated graphical user interface for real-time data visualization.</div>
+        <div class="project-desc">Designed and developed a low-cost potentiostat for electrochemical analysis of solutions, complete with an integrated GUI for real-time data visualization. Deployed at Qosain Scientific.</div>
         <div class="project-tech"><span class="tech-tag">Analog Design</span><span class="tech-tag">PCB</span><span class="tech-tag">GUI</span></div>
       </div>
-      <div class="project-card reveal">
-        <div class="project-num">PROJECT_03 // Biomedical</div>
+      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
+        <div class="project-num">PRO_02 // Biomedical</div>
         <div class="project-title">Blood Pressure Measurement Circuitry</div>
         <div class="project-desc">Designed circuitry with signal conditioning and processing for extraction of key physiological parameters from blood pressure waveforms.</div>
         <div class="project-tech"><span class="tech-tag">Signal Conditioning</span><span class="tech-tag">Analog</span><span class="tech-tag">PCB</span></div>
       </div>
-      <div class="project-card reveal">
-        <div class="project-num">PROJECT_04 // Biophysics</div>
+      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
+        <div class="project-num">PRO_03 // Biophysics</div>
         <div class="project-title">Bioelectrical Response of Mimosa Pudica</div>
         <div class="project-desc">Electronic circuitry to measure bioelectrical signals in the sensitive plant Mimosa pudica in response to external stimuli — bridging electronics and plant biophysics.</div>
         <div class="project-tech"><span class="tech-tag">Biophysics</span><span class="tech-tag">Instrumentation</span><span class="tech-tag">Embedded</span></div>
       </div>
-      <div class="project-card reveal">
-        <div class="project-num">PROJECT_05 // Control Systems</div>
-        <div class="project-title">PID-Controlled Self-Balancing Robot</div>
-        <div class="project-desc">Self-balancing robot using a PID controller implemented in MATLAB with LEGO Mindstorms EV3 hardware.</div>
-        <div class="project-tech"><span class="tech-tag">MATLAB</span><span class="tech-tag">PID</span><span class="tech-tag">LEGO EV3</span></div>
+      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
+        <div class="project-num">PRO_04 // Physics Lab</div>
+        <div class="project-title">Magnetic Damping (Eddy Currents) Experimental Setup</div>
+        <div class="project-desc">Developed and validated a complete eddy current experimental setup for PhysLab at LUMS, with full technical documentation for academic deployment. Supervised by Dr. Sabieh Anwar.</div>
+        <div class="project-tech"><span class="tech-tag">Instrumentation</span><span class="tech-tag">Circuit Design</span><span class="tech-tag">Documentation</span></div>
       </div>
-      <div class="project-card reveal">
-        <div class="project-num">PROJECT_06 // RF</div>
-        <div class="project-title">Reconfigurable Dual-Band Antenna</div>
-        <div class="project-desc">Designed a reconfigurable dual-band antenna using a shared aperture approach, simulated and optimized in Ansys HFSS.</div>
-        <div class="project-tech"><span class="tech-tag">HFSS</span><span class="tech-tag">RF Design</span><span class="tech-tag">Antenna</span></div>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-num">PROJECT_07 // SDR</div>
-        <div class="project-title">SDR-Based FM Transceiver</div>
-        <div class="project-desc">Designed a software-defined radio FM transceiver for real-time audio transmission and reception, implemented in MATLAB.</div>
-        <div class="project-tech"><span class="tech-tag">SDR</span><span class="tech-tag">MATLAB</span><span class="tech-tag">FM</span></div>
-      </div>
-      <div class="project-card reveal">
-        <div class="project-num">PROJECT_08 // Radar</div>
-        <div class="project-title">KLD-7 Radar — Distance Measurement</div>
-        <div class="project-desc">Implemented KLD-7 radar for real-time distance measurement with LCD display output and MATLAB signal processing pipeline.</div>
-        <div class="project-tech"><span class="tech-tag">Radar</span><span class="tech-tag">MATLAB</span><span class="tech-tag">AVR</span></div>
+      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
+        <div class="project-num">PRO_05 // Neuroscience</div>
+        <div class="project-title">Action Potential Synthesizer</div>
+        <div class="project-desc">Developed and validated a hardware-based action potential synthesizer using circuit simulation and physical prototyping for PhysLab experimental use.</div>
+        <div class="project-tech"><span class="tech-tag">Analog</span><span class="tech-tag">Simulation</span><span class="tech-tag">Prototyping</span></div>
       </div>
     </div>
+
+    <!-- CATEGORY 2: FINAL YEAR PROJECT -->
+    <div class="proj-category reveal">
+      <div class="proj-category-label">
+        <span class="proj-cat-icon">🎓</span>
+        <span class="proj-cat-title">FINAL YEAR PROJECT</span>
+        <span class="proj-cat-sub">// NUST — College of Aeronautical Engineering</span>
+      </div>
+    </div>
+    <div class="projects-grid" style="margin-bottom: 3.5rem;">
+      <div class="project-card reveal" style="border-top: 2px solid var(--orange); grid-column: 1 / -1; max-width: 700px;">
+        <div class="project-num">FYP_01 // Sep 2022 – Sep 2023</div>
+        <div class="project-title">Non-Invasive Glucose Monitoring Using Near-Infrared Spectroscopy</div>
+        <div class="project-desc">Developed a Near-Infrared (NIR) spectroscopy-based glucose sensor prototype tested on aqueous solutions, fruit samples, and human subjects non-invasively. Supervised by Dr. Adnan Shah and Dr. Waqar Ahmad.</div>
+        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(255,107,0,0.4);color:var(--orange);background:rgba(255,107,0,0.06);">NIR Spectroscopy</span><span class="tech-tag" style="border-color:rgba(255,107,0,0.4);color:var(--orange);background:rgba(255,107,0,0.06);">Signal Processing</span><span class="tech-tag" style="border-color:rgba(255,107,0,0.4);color:var(--orange);background:rgba(255,107,0,0.06);">MATLAB</span><span class="tech-tag" style="border-color:rgba(255,107,0,0.4);color:var(--orange);background:rgba(255,107,0,0.06);">Optical Sensing</span></div>
+      </div>
+    </div>
+
+    <!-- CATEGORY 3: SEMESTER / COURSE PROJECTS -->
+    <div class="proj-category reveal">
+      <div class="proj-category-label">
+        <span class="proj-cat-icon">📚</span>
+        <span class="proj-cat-title">SEMESTER & COURSE PROJECTS</span>
+        <span class="proj-cat-sub">// NUST — Academic Coursework</span>
+      </div>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
+        <div class="project-num">SEM_01 // Control Systems</div>
+        <div class="project-title">PID-Controlled Self-Balancing Robot</div>
+        <div class="project-desc">Self-balancing robot using a PID controller implemented in MATLAB with LEGO Mindstorms EV3 hardware.</div>
+        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">MATLAB</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">PID</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">LEGO EV3</span></div>
+      </div>
+      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
+        <div class="project-num">SEM_02 // Robotics</div>
+        <div class="project-title">Goalkeeper Robot Using LEGO Mindstorms EV3</div>
+        <div class="project-desc">Designed a goalkeeper robot using LEGO Mindstorms EV3 with MATLAB-based control logic for real-time ball tracking and blocking.</div>
+        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">MATLAB</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">LEGO EV3</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">Robotics</span></div>
+      </div>
+      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
+        <div class="project-num">SEM_03 // RF Engineering</div>
+        <div class="project-title">Reconfigurable Dual-Band Antenna</div>
+        <div class="project-desc">Designed a reconfigurable dual-band antenna using a shared aperture approach, simulated and optimized in Ansys HFSS.</div>
+        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">HFSS</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">RF Design</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">Antenna</span></div>
+      </div>
+      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
+        <div class="project-num">SEM_04 // Radar Systems</div>
+        <div class="project-title">KLD-7 Radar — Distance Measurement</div>
+        <div class="project-desc">Implemented KLD-7 radar for real-time distance measurement with LCD display output and MATLAB signal processing pipeline.</div>
+        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">Radar</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">MATLAB</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">AVR</span></div>
+      </div>
+      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
+        <div class="project-num">SEM_05 // Communications</div>
+        <div class="project-title">SDR-Based FM Transceiver</div>
+        <div class="project-desc">Designed a software-defined radio FM transceiver for real-time audio transmission and reception, implemented in MATLAB.</div>
+        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">SDR</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">MATLAB</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">FM</span></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1082,8 +1163,8 @@
       <div class="contact-title">LET'S <span>CONNECT</span></div>
       <p style="color:var(--muted); max-width:500px; line-height:1.8; font-size:0.9rem;">Open to research collaborations, freelance electronics projects, and full-time opportunities in electronics engineering and instrumentation.</p>
       <div class="contact-links">
-        <a href="mailto:jamalliaqat101ly@gmail.com" class="contact-link">
-          <span>✉</span> jamalliaqat101ly@gmail.com
+        <a href="/cdn-cgi/l/email-protection#d5bfb4b8b4b9b9bcb4a4b4a1e4e5e4b9ac95b2b8b4bcb9fbb6bab8" class="contact-link">
+          <span>✉</span> <span class="__cf_email__" data-cfemail="f79d969a969b9b9e96869683c6c7c69b8eb7909a969e9bd994989a">[email&#160;protected]</span>
         </a>
         <a href="https://linkedin.com/in/jamal-liaqat" target="_blank" class="contact-link">
           <span>in</span> jamal-liaqat
