@@ -4,757 +4,203 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jamal Liaqat — Electronics Engineer</title>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #040d0a;
-    --bg2: #071410;
-    --card: #0a1f1a;
-    --border: #0fff6a22;
-    --green: #00ff88;
-    --cyan: #00e5ff;
-    --orange: #ff6b00;
-    --text: #c8fde8;
-    --muted: #5a9a7a;
-    --grid: #0fff6a08;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Exo 2', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
-
-  /* ─── CIRCUIT GRID BACKGROUND ─── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--grid) 1px, transparent 1px),
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ─── SCANLINES ─── */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0,255,136,0.015) 2px,
-      rgba(0,255,136,0.015) 4px
-    );
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 3rem;
-    background: rgba(4,13,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: 'Orbitron', monospace;
-    font-size: 1.1rem;
-    font-weight: 900;
-    color: var(--green);
-    letter-spacing: 3px;
-    text-shadow: 0 0 20px var(--green);
-  }
-
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    color: var(--muted);
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.3s;
-  }
-  .nav-links a:hover { color: var(--green); text-shadow: 0 0 10px var(--green); }
-
-  /* ─── SECTIONS ─── */
-  section { position: relative; z-index: 1; }
-
-  /* ─── HERO ─── */
-  #hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 8rem 3rem 4rem;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .hero-tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 4px;
-    color: var(--cyan);
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.2s forwards;
-  }
-
-  .hero-tag::before { content: '>> '; color: var(--orange); }
-
-  .hero-name {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(2.8rem, 7vw, 6rem);
-    font-weight: 900;
-    line-height: 1;
-    color: #fff;
-    text-shadow: 0 0 40px rgba(0,255,136,0.3);
-    opacity: 0;
-    animation: fadeUp 0.8s 0.4s forwards;
-  }
-
-  .hero-name span { color: var(--green); }
-
-  .hero-title {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: clamp(1rem, 2.5vw, 1.4rem);
-    color: var(--cyan);
-    margin-top: 1rem;
-    letter-spacing: 3px;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.6s forwards;
-  }
-
-  .hero-desc {
-    max-width: 600px;
-    margin-top: 1.5rem;
-    line-height: 1.8;
-    color: var(--muted);
-    font-size: 0.95rem;
-    opacity: 0;
-    animation: fadeUp 0.8s 0.8s forwards;
-  }
-
-  .hero-btns {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2.5rem;
-    flex-wrap: wrap;
-    opacity: 0;
-    animation: fadeUp 0.8s 1s forwards;
-  }
-
-  .btn {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    padding: 0.75rem 2rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    border: 1px solid var(--green);
-    color: var(--green);
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--green);
-    transform: translateX(-101%);
-    transition: transform 0.3s;
-    z-index: -1;
-  }
-
-  .btn:hover { color: var(--bg); }
-  .btn:hover::before { transform: translateX(0); }
-
-  .btn-outline {
-    border-color: var(--cyan);
-    color: var(--cyan);
-  }
-  .btn-outline::before { background: var(--cyan); }
-
-  /* ─── SECTION TEMPLATE ─── */
-  .section-wrap {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 5rem 3rem;
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .section-num {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--orange);
-    letter-spacing: 2px;
-  }
-
-  .section-title {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 700;
-    color: #fff;
-    letter-spacing: 2px;
-  }
-
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, var(--green), transparent);
-    opacity: 0.4;
-  }
-
-  /* ─── ABOUT ─── */
-  #about { background: rgba(0,255,136,0.02); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 3rem;
-    align-items: start;
-  }
-
-  .avatar-frame {
-    width: 180px;
-    height: 180px;
-    border: 2px solid var(--green);
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-    box-shadow: 0 0 30px rgba(0,255,136,0.2);
-  }
-
-  .avatar-frame::before, .avatar-frame::after {
-    content: '';
-    position: absolute;
-    width: 20px; height: 20px;
-    border-color: var(--cyan);
-    border-style: solid;
-    z-index: 2;
-  }
-  .avatar-frame::before { top: -2px; right: -2px; border-width: 2px 2px 0 0; }
-  .avatar-frame::after  { bottom: -2px; left: -2px; border-width: 0 0 2px 2px; }
-
-  .avatar-placeholder {
-    width: 100%; height: 100%;
-    background: var(--card);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-  }
-
-  .avatar-icon { font-size: 3.5rem; }
-
-  .avatar-placeholder span {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-align: center;
-  }
-
-  .about-text p { line-height: 1.9; color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
-  .about-text p strong { color: var(--green); font-weight: 600; }
-
-  .about-stats {
-    display: flex;
-    gap: 2rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .stat {
-    border-left: 2px solid var(--green);
-    padding-left: 1rem;
-  }
-
-  .stat-val {
-    font-family: 'Orbitron', monospace;
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--green);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 0.3rem;
-  }
-
-  /* ─── SKILLS ─── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .skill-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    position: relative;
-    transition: border-color 0.3s, box-shadow 0.3s;
-  }
-
-  .skill-card:hover {
-    border-color: var(--green);
-    box-shadow: 0 0 20px rgba(0,255,136,0.1);
-  }
-
-  .skill-card-title {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--cyan);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    padding: 0.3rem 0.7rem;
-    border: 1px solid var(--border);
-    color: var(--text);
-    letter-spacing: 1px;
-    background: rgba(0,255,136,0.04);
-    transition: all 0.2s;
-  }
-
-  .tag:hover { border-color: var(--green); color: var(--green); }
-
-  /* ─── EXPERIENCE ─── */
-  .timeline { position: relative; padding-left: 2rem; }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, var(--green), transparent);
-    opacity: 0.4;
-  }
-
-  .timeline-item {
-    position: relative;
-    padding-bottom: 2.5rem;
-  }
-
-  .timeline-dot {
-    position: absolute;
-    left: -2.37rem;
-    top: 0.35rem;
-    width: 10px; height: 10px;
-    border: 2px solid var(--green);
-    background: var(--bg);
-    transform: rotate(45deg);
-    box-shadow: 0 0 10px rgba(0,255,136,0.5);
-  }
-
-  .timeline-date {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--orange);
-    letter-spacing: 2px;
-    margin-bottom: 0.3rem;
-  }
-
-  .timeline-role {
-    font-family: 'Orbitron', monospace;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.2rem;
-  }
-
-  .timeline-company {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--cyan);
-    margin-bottom: 0.8rem;
-    letter-spacing: 1px;
-  }
-
-  .timeline-desc {
-    color: var(--muted);
-    font-size: 0.88rem;
-    line-height: 1.8;
-  }
-
-  .timeline-desc li { margin-bottom: 0.3rem; list-style: none; padding-left: 1rem; position: relative; }
-  .timeline-desc li::before { content: '▸ '; position: absolute; left: 0; color: var(--green); }
-
-  /* ─── PROJECTS ─── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .project-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 1.8rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--green), var(--cyan));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-
-  .project-card:hover { border-color: rgba(0,255,136,0.3); transform: translateY(-4px); }
-  .project-card:hover::before { transform: scaleX(1); }
-
-  .project-num {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--orange);
-    letter-spacing: 2px;
-    margin-bottom: 0.8rem;
-  }
-
-  .project-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 0.8rem;
-    line-height: 1.4;
-  }
-
-  .project-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .project-tech {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 1rem;
-  }
-
-  .tech-tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    padding: 0.2rem 0.6rem;
-    background: rgba(0,229,255,0.08);
-    border: 1px solid rgba(0,229,255,0.2);
-    color: var(--cyan);
-    letter-spacing: 1px;
-  }
-
-  /* ─── EDUCATION ─── */
-  .edu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .edu-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    padding: 1.8rem;
-    position: relative;
-  }
-
-  .edu-card::after {
-    content: attr(data-year);
-    position: absolute;
-    top: 1.2rem; right: 1.2rem;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--orange);
-    letter-spacing: 2px;
-  }
-
-  .edu-degree {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--green);
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
-  }
-
-  .edu-school {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 0.3rem;
-  }
-
-  .edu-location {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 1px;
-  }
-
-  /* ─── CERTS & HONORS ─── */
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-
-  .cert-item {
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
-    padding: 1.2rem;
-    background: var(--card);
-    border: 1px solid var(--border);
-    transition: border-color 0.3s;
-  }
-
-  .cert-item:hover { border-color: var(--green); }
-
-  .cert-icon {
-    font-size: 1.5rem;
-    flex-shrink: 0;
-    margin-top: 0.1rem;
-  }
-
-  .cert-info {}
-  .cert-title {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.2rem;
-    line-height: 1.4;
-  }
-
-  .cert-meta {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 1px;
-  }
-
-  /* ─── PUBLICATIONS ─── */
-  .pub-list { display: flex; flex-direction: column; gap: 1rem; }
-
-  .pub-item {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--cyan);
-    padding: 1.5rem;
-    transition: border-color 0.3s;
-  }
-
-  .pub-item:hover { border-color: var(--cyan); box-shadow: -4px 0 20px rgba(0,229,255,0.15); }
-
-  .pub-title {
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 0.4rem;
-    line-height: 1.5;
-  }
-
-  .pub-meta {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--cyan);
-    letter-spacing: 1px;
-  }
-
-  /* ─── PROJECT CATEGORIES ─── */
-  .proj-category { margin-bottom: 1.2rem; }
-
-  .proj-category-label {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.8rem 1.2rem;
-    background: rgba(0,255,136,0.04);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--green);
-  }
-
-  .proj-cat-icon { font-size: 1.1rem; }
-
-  .proj-cat-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--green);
-    letter-spacing: 2px;
-  }
-
-  .proj-cat-sub {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 1px;
-    margin-left: auto;
-  }
-
-  /* ─── CONTACT ─── */
-  #contact { border-top: 1px solid var(--border); }
-
-  .contact-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 2rem;
-  }
-
-  .contact-title {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 900;
-    color: #fff;
-  }
-
-  .contact-title span { color: var(--green); }
-
-  .contact-links {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 1px;
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--border);
-    transition: all 0.3s;
-  }
-
-  .contact-link:hover { color: var(--green); border-color: var(--green); box-shadow: 0 0 15px rgba(0,255,136,0.15); }
-
-  /* ─── FOOTER ─── */
-  footer {
-    text-align: center;
-    padding: 2rem;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--muted);
-    letter-spacing: 2px;
-    border-top: 1px solid var(--border);
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.visible { opacity: 1; transform: none; }
-
-  /* ─── GLITCH CURSOR ─── */
-  .glitch {
-    position: relative;
-    display: inline-block;
-  }
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 2px; top: 0;
-    color: var(--cyan);
-    clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
-    animation: glitch 4s infinite;
-    opacity: 0.5;
-  }
-
-  @keyframes glitch {
-    0%, 90%, 100% { transform: none; opacity: 0; }
-    91% { transform: translateX(-4px); opacity: 0.5; }
-    93% { transform: translateX(4px); opacity: 0.4; }
-    95% { transform: none; opacity: 0.5; }
-  }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 700px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { display: none; }
-    .section-wrap { padding: 4rem 1.5rem; }
-    #hero { padding: 7rem 1.5rem 3rem; }
-    .about-grid { grid-template-columns: 1fr; }
-    .avatar-frame { margin: 0 auto; }
-  }
+:root{
+  --bg:#09152a;--bg2:#0d1e38;--card:#0f2040;--card2:#122448;
+  --border:rgba(74,158,255,0.15);--blue:#4a9eff;--cyan:#00d4ff;
+  --white:#e8f4ff;--muted:#5a88b8;--dim:#2a4a72;
+  --orange:#ff9500;--green:#00e5a0;--grid:rgba(74,158,255,0.05);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-weight:300;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:.9rem 3rem;background:rgba(9,21,42,0.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'IBM Plex Mono',monospace;font-size:1rem;font-weight:600;color:var(--blue);letter-spacing:3px}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:2px;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:var(--blue)}
+section{position:relative;z-index:1}
+.wrap{max-width:1100px;margin:0 auto;padding:5rem 3rem}
+.sec-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:3rem}
+.sec-num{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--orange);letter-spacing:2px}
+.sec-title{font-family:'IBM Plex Mono',monospace;font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:600;color:var(--white);letter-spacing:2px}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--blue),transparent);opacity:.3}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 4rem;max-width:1100px;margin:0 auto}
+.hero-tag{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:4px;color:var(--cyan);text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-tag::before{content:'// ';color:var(--orange)}
+.hero-name{font-family:'IBM Plex Mono',monospace;font-size:clamp(2.5rem,6vw,5.5rem);font-weight:600;line-height:1;color:#fff;letter-spacing:2px;opacity:0;animation:fadeUp .8s .4s forwards}
+.hero-name span{color:var(--blue)}
+.hero-sub{font-family:'IBM Plex Mono',monospace;font-size:clamp(.85rem,1.8vw,1.1rem);color:var(--cyan);margin-top:.8rem;letter-spacing:2px;opacity:0;animation:fadeUp .8s .6s forwards}
+.hero-desc{max-width:580px;margin-top:1.2rem;line-height:1.9;color:var(--muted);font-size:.9rem;opacity:0;animation:fadeUp .8s .8s forwards}
+.hero-btns{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;opacity:0;animation:fadeUp .8s 1s forwards}
+.btn{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:2px;padding:.7rem 1.8rem;text-decoration:none;text-transform:uppercase;border:1px solid var(--blue);color:var(--blue);background:transparent;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.btn::before{content:'';position:absolute;inset:0;background:var(--blue);transform:translateX(-101%);transition:transform .3s;z-index:-1}
+.btn:hover{color:var(--bg)}.btn:hover::before{transform:translateX(0)}
+.btn-o{border-color:var(--cyan);color:var(--cyan)}.btn-o::before{background:var(--cyan)}
+
+/* ABOUT */
+#about{background:rgba(74,158,255,.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:180px 1fr;gap:3rem;align-items:start}
+.avatar-frame{width:180px;height:180px;border:1px solid var(--blue);position:relative;overflow:hidden;flex-shrink:0}
+.avatar-frame::before,.avatar-frame::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--cyan);border-style:solid;z-index:2}
+.avatar-frame::before{top:-1px;right:-1px;border-width:2px 2px 0 0}
+.avatar-frame::after{bottom:-1px;left:-1px;border-width:0 0 2px 2px}
+.avatar-ph{width:100%;height:100%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+.avatar-ph span{font-family:'IBM Plex Mono',monospace;font-size:.55rem;color:var(--muted);letter-spacing:2px;text-align:center}
+.about-text p{line-height:1.9;color:var(--muted);font-size:.9rem;margin-bottom:.9rem}
+.about-text p strong{color:var(--blue);font-weight:600}
+.about-stats{display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
+.stat{border-left:2px solid var(--blue);padding-left:1rem}
+.stat-val{font-family:'IBM Plex Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--blue);line-height:1}
+.stat-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:.3rem}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem}
+.skill-card{background:var(--card);border:1px solid var(--border);padding:1.4rem;transition:border-color .3s}
+.skill-card:hover{border-color:var(--blue)}
+.skill-card-title{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:.9rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:.65rem;padding:.25rem .6rem;border:1px solid var(--border);color:var(--white);letter-spacing:1px;background:rgba(74,158,255,.04);transition:all .2s}
+.tag:hover{border-color:var(--blue);color:var(--blue)}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--blue),transparent);opacity:.3}
+.tl-item{position:relative;padding-bottom:2.5rem}
+.tl-dot{position:absolute;left:-2.3rem;top:.3rem;width:9px;height:9px;border:1.5px solid var(--blue);background:var(--bg);transform:rotate(45deg)}
+.tl-date{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--orange);letter-spacing:2px;margin-bottom:.3rem}
+.tl-role{font-family:'IBM Plex Mono',monospace;font-size:.95rem;font-weight:600;color:#fff;margin-bottom:.2rem}
+.tl-company{font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--cyan);margin-bottom:.7rem;letter-spacing:1px}
+.tl-desc{color:var(--muted);font-size:.85rem;line-height:1.8}
+.tl-desc li{list-style:none;padding-left:1rem;position:relative;margin-bottom:.25rem}
+.tl-desc li::before{content:'▸ ';position:absolute;left:0;color:var(--blue)}
+
+/* WEB DEV */
+#webdev{background:rgba(0,212,255,.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.webdev-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.web-card{background:var(--card);border:1px solid var(--border);padding:1.8rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.web-card:hover{border-color:var(--cyan);transform:translateY(-3px)}
+.web-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.web-card:hover::before{transform:scaleX(1)}
+.web-card-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--orange);letter-spacing:2px;margin-bottom:.7rem}
+.web-card-title{font-family:'IBM Plex Mono',monospace;font-size:1rem;font-weight:600;color:#fff;margin-bottom:.5rem}
+.web-card-desc{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:1rem}
+.web-screenshot{width:100%;height:130px;background:var(--card2);border:1px solid var(--border);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.web-screenshot-inner{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:2px;text-align:center}
+.browser-bar{position:absolute;top:0;left:0;right:0;height:24px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 .6rem;gap:.3rem}
+.b-dot{width:7px;height:7px;border-radius:50%}
+.web-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+.web-link{display:inline-flex;align-items:center;gap:.4rem;font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--cyan);text-decoration:none;letter-spacing:1px;border:1px solid rgba(0,212,255,.3);padding:.4rem 1rem;transition:all .3s}
+.web-link:hover{background:var(--cyan);color:var(--bg)}
+
+/* PROJECT CATEGORIES */
+.proj-cat-bar{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--blue);margin-bottom:1.2rem}
+.proj-cat-bar.fyp{border-left-color:var(--orange)}
+.proj-cat-bar.sem{border-left-color:var(--cyan)}
+.proj-cat-icon{font-size:1rem}
+.proj-cat-title{font-family:'IBM Plex Mono',monospace;font-size:.8rem;font-weight:600;color:var(--blue);letter-spacing:2px}
+.proj-cat-bar.fyp .proj-cat-title{color:var(--orange)}
+.proj-cat-bar.sem .proj-cat-title{color:var(--cyan)}
+.proj-cat-sub{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:1px;margin-left:auto}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.2rem;margin-bottom:3rem}
+
+/* EXPANDABLE CARDS */
+.proj-card{background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden;cursor:pointer;transition:border-color .3s}
+.proj-card:hover{border-color:var(--blue)}
+.proj-card.fyp-c:hover{border-color:var(--orange)}
+.proj-card.sem-c:hover{border-color:var(--cyan)}
+.proj-card-top{position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.proj-card.fyp-c .proj-card-top{background:var(--orange)}
+.proj-card.sem-c .proj-card-top{background:var(--cyan)}
+.proj-card:hover .proj-card-top{transform:scaleX(1)}
+.proj-card-head{padding:1.5rem 1.5rem 1rem}
+.proj-num{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--orange);letter-spacing:2px;margin-bottom:.6rem}
+.proj-card.sem-c .proj-num{color:var(--cyan)}
+.proj-title{font-family:'IBM Plex Mono',monospace;font-size:.88rem;font-weight:600;color:#fff;line-height:1.4;margin-bottom:.6rem}
+.proj-brief{font-size:.82rem;color:var(--muted);line-height:1.6}
+.proj-tech{display:flex;flex-wrap:wrap;gap:.35rem;padding:0 1.5rem .8rem}
+.proj-tech .tag{font-size:.6rem;padding:.2rem .5rem}
+.proj-card.sem-c .proj-tech .tag{border-color:rgba(0,212,255,.2);color:var(--cyan);background:rgba(0,212,255,.04)}
+.proj-card.fyp-c .proj-tech .tag{border-color:rgba(255,149,0,.2);color:var(--orange);background:rgba(255,149,0,.04)}
+.proj-toggle{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.5rem;border-top:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--blue);letter-spacing:1px;transition:background .2s}
+.proj-card.fyp-c .proj-toggle{color:var(--orange)}
+.proj-card.sem-c .proj-toggle{color:var(--cyan)}
+.proj-toggle:hover{background:rgba(74,158,255,.05)}
+.toggle-icon{transition:transform .3s;font-size:.8rem}
+.proj-card.open .toggle-icon{transform:rotate(180deg)}
+.proj-expand{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.proj-card.open .proj-expand{max-height:700px}
+.proj-expand-inner{padding:1.2rem 1.5rem 1.5rem;border-top:1px solid var(--border);background:var(--card2)}
+.expand-row{margin-bottom:.9rem}
+.expand-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:.3rem}
+.proj-card.fyp-c .expand-label{color:var(--orange)}
+.expand-text{font-size:.82rem;color:var(--muted);line-height:1.7}
+.expand-links{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
+.expand-link{font-family:'IBM Plex Mono',monospace;font-size:.65rem;padding:.35rem .9rem;text-decoration:none;letter-spacing:1px;border:1px solid var(--border);color:var(--blue);transition:all .3s}
+.expand-link:hover{background:var(--blue);color:var(--bg)}
+.expand-link.gh{border-color:rgba(255,255,255,.2);color:var(--white)}
+.expand-link.gh:hover{background:var(--white);color:var(--bg)}
+.fyp-full{grid-column:1/-1;max-width:740px}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.2rem}
+.edu-card{background:var(--card);border:1px solid var(--border);padding:1.6rem;position:relative}
+.edu-card::after{content:attr(data-year);position:absolute;top:1.2rem;right:1.2rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--orange);letter-spacing:2px}
+.edu-degree{font-family:'IBM Plex Mono',monospace;font-size:.85rem;font-weight:600;color:var(--blue);margin-bottom:.4rem;line-height:1.4}
+.edu-school{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:.3rem}
+.edu-loc{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:1px}
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.9rem;margin-top:2rem}
+.cert-item{display:flex;gap:.9rem;align-items:flex-start;padding:1.1rem;background:var(--card);border:1px solid var(--border);transition:border-color .3s}
+.cert-item:hover{border-color:var(--blue)}
+.cert-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
+.cert-title{font-size:.82rem;font-weight:600;color:var(--white);margin-bottom:.2rem;line-height:1.4}
+.cert-meta{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:1px}
+
+/* PUBLICATIONS */
+.pub-list{display:flex;flex-direction:column;gap:.9rem}
+.pub-item{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--cyan);padding:1.4rem;transition:box-shadow .3s}
+.pub-item:hover{box-shadow:-4px 0 20px rgba(0,212,255,.12)}
+.pub-title{font-size:.92rem;font-weight:600;color:#fff;margin-bottom:.35rem;line-height:1.5}
+.pub-meta{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--cyan);letter-spacing:1px}
+
+/* CONTACT */
+.contact-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.8rem}
+.contact-title{font-family:'IBM Plex Mono',monospace;font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:600;color:#fff}
+.contact-title span{color:var(--blue)}
+.contact-links{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center}
+.contact-link{display:flex;align-items:center;gap:.5rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);text-decoration:none;letter-spacing:1px;padding:.65rem 1.3rem;border:1px solid var(--border);transition:all .3s}
+.contact-link:hover{color:var(--blue);border-color:var(--blue)}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:2px;border-top:1px solid var(--border);position:relative;z-index:1}
+.bp-block{display:inline-flex;flex-direction:column;border:1px solid var(--border);padding:.5rem 1.2rem;margin-top:.8rem}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:700px){
+  nav{padding:.9rem 1.5rem}.nav-links{display:none}
+  .wrap{padding:4rem 1.5rem}#hero{padding:7rem 1.5rem 3rem}
+  .about-grid{grid-template-columns:1fr}.avatar-frame{margin:0 auto}
+  .webdev-grid{grid-template-columns:1fr}.fyp-full{grid-column:1}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
-  <div class="nav-logo">JL.EE</div>
+  <div class="nav-logo">JL.ENG</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
+    <li><a href="#webdev">Web Dev</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#education">Education</a></li>
     <li><a href="#publications">Publications</a></li>
@@ -764,50 +210,37 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-tag">Electronics Engineer // Analog & Biomedical Circuits</div>
-  <h1 class="hero-name glitch" data-text="JAMAL LIAQAT">JAMAL <span>LIAQAT</span></h1>
-  <div class="hero-title">Research Associate &nbsp;•&nbsp; PCB Designer &nbsp;•&nbsp; Embedded Systems</div>
-  <p class="hero-desc">
-    Avionics engineering graduate with hands-on expertise in analog circuit design, biomedical instrumentation, PCB fabrication, and microcontroller programming. Currently building scientific instruments at Qosain Scientific, Lahore.
-  </p>
+  <div class="hero-tag">Electronics Engineer // Analog · Biomedical · Embedded</div>
+  <h1 class="hero-name">JAMAL <span>LIAQAT</span></h1>
+  <div class="hero-sub">Research Associate &nbsp;·&nbsp; PCB Designer &nbsp;·&nbsp; Instrument Developer</div>
+  <p class="hero-desc">Avionics engineering graduate building scientific instruments at Qosain Scientific, Lahore. Specialising in analog circuit design, biomedical electronics, PCB fabrication, and embedded systems.</p>
   <div class="hero-btns">
     <a href="#projects" class="btn">View Projects</a>
-    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+    <a href="#contact" class="btn btn-o">Get In Touch</a>
+    <a href="https://github.com/sljamil" target="_blank" class="btn btn-o">GitHub ↗</a>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <span class="section-num">// 01</span>
-      <h2 class="section-title">ABOUT ME</h2>
-      <div class="section-line"></div>
-    </div>
+  <div class="wrap">
+    <div class="sec-header reveal"><span class="sec-num">// 01</span><h2 class="sec-title">ABOUT ME</h2><div class="sec-line"></div></div>
     <div class="about-grid reveal">
       <div class="avatar-frame">
-        <div class="avatar-placeholder">
-          <span class="avatar-icon">⚙️</span>
+        <div class="avatar-ph">
+          <span style="font-size:3rem">⚙️</span>
           <span>ADD PHOTO<br>HERE</span>
         </div>
       </div>
       <div class="about-text">
         <p>I'm <strong>Jamal Liaqat</strong>, an Electronics Engineer and Research Associate at <strong>Qosain Scientific</strong>, Lahore. I hold a BS in Avionics Engineering from the <strong>College of Aeronautical Engineering, NUST</strong>.</p>
-        <p>My work sits at the intersection of analog electronics, biomedical instrumentation, and embedded systems. I design circuits that measure the world — from blood pressure waveforms to the bioelectrical responses of plants.</p>
-        <p>I thrive in research environments that demand precision: designing PCBs, building signal conditioning pipelines, writing firmware, and documenting it all clearly. I also bring web development skills with WordPress to help communicate science to broader audiences.</p>
+        <p>My work sits at the intersection of analog electronics, biomedical instrumentation, and embedded systems — designing circuits that measure the physical world with precision, from blood pressure waveforms to bioelectrical plant signals.</p>
+        <p>Beyond hardware, I build for the web: I designed and maintain <strong>qosainscientific.com</strong> and create personal projects that bridge AI and hardware — like <strong>Duino.ai</strong>, an Arduino controlled entirely by AI prompts.</p>
         <div class="about-stats">
-          <div class="stat">
-            <div class="stat-val">2+</div>
-            <div class="stat-label">Years Experience</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">6+</div>
-            <div class="stat-label">Projects</div>
-          </div>
-          <div class="stat">
-            <div class="stat-val">NUST</div>
-            <div class="stat-label">BS Avionics Eng.</div>
-          </div>
+          <div class="stat"><div class="stat-val">2+</div><div class="stat-label">Years Exp.</div></div>
+          <div class="stat"><div class="stat-val">8+</div><div class="stat-label">Projects</div></div>
+          <div class="stat"><div class="stat-val">NUST</div><div class="stat-label">BS Avionics</div></div>
+          <div class="stat"><div class="stat-val">PK</div><div class="stat-label">Lahore</div></div>
         </div>
       </div>
     </div>
@@ -816,383 +249,309 @@
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <span class="section-num">// 02</span>
-      <h2 class="section-title">SKILLS & TOOLS</h2>
-      <div class="section-line"></div>
-    </div>
+  <div class="wrap">
+    <div class="sec-header reveal"><span class="sec-num">// 02</span><h2 class="sec-title">SKILLS & TOOLS</h2><div class="sec-line"></div></div>
     <div class="skills-grid">
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Simulation & Design</div>
-        <div class="skill-tags">
-          <span class="tag">MATLAB</span>
-          <span class="tag">Ansys HFSS</span>
-          <span class="tag">EasyEDA</span>
-          <span class="tag">Altium</span>
-          <span class="tag">LTSpice</span>
-          <span class="tag">SolidWorks</span>
-          <span class="tag">Fusion 360</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Embedded Systems</div>
-        <div class="skill-tags">
-          <span class="tag">Arduino IDE</span>
-          <span class="tag">AVR Microcontrollers</span>
-          <span class="tag">VS Code</span>
-          <span class="tag">Circuit Interfacing</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Programming</div>
-        <div class="skill-tags">
-          <span class="tag">MATLAB</span>
-          <span class="tag">Python</span>
-          <span class="tag">LaTeX</span>
-          <span class="tag">AVR C</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Domains</div>
-        <div class="skill-tags">
-          <span class="tag">Analog Circuit Design</span>
-          <span class="tag">PCB Fabrication</span>
-          <span class="tag">Biomedical Circuits</span>
-          <span class="tag">Signal Processing</span>
-          <span class="tag">RF / Antenna</span>
-          <span class="tag">Instrumentation</span>
-        </div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="skill-card-title">Web & Documentation</div>
-        <div class="skill-tags">
-          <span class="tag">WordPress</span>
-          <span class="tag">Elementor</span>
-          <span class="tag">WooCommerce</span>
-          <span class="tag">SEO</span>
-          <span class="tag">Technical Writing</span>
-        </div>
-      </div>
+      <div class="skill-card reveal"><div class="skill-card-title">Simulation & Design</div><div class="tags"><span class="tag">MATLAB</span><span class="tag">Ansys HFSS</span><span class="tag">EasyEDA</span><span class="tag">Altium</span><span class="tag">LTSpice</span><span class="tag">SolidWorks</span><span class="tag">Fusion 360</span></div></div>
+      <div class="skill-card reveal"><div class="skill-card-title">Embedded Systems</div><div class="tags"><span class="tag">Arduino IDE</span><span class="tag">AVR C</span><span class="tag">VS Code</span><span class="tag">Circuit Interfacing</span><span class="tag">Firmware</span></div></div>
+      <div class="skill-card reveal"><div class="skill-card-title">Programming</div><div class="tags"><span class="tag">MATLAB</span><span class="tag">Python</span><span class="tag">LaTeX</span><span class="tag">AVR C</span><span class="tag">JavaScript</span></div></div>
+      <div class="skill-card reveal"><div class="skill-card-title">Domains</div><div class="tags"><span class="tag">Analog Circuit Design</span><span class="tag">PCB Fabrication</span><span class="tag">Biomedical Circuits</span><span class="tag">Signal Processing</span><span class="tag">RF / Antenna</span><span class="tag">Instrumentation</span></div></div>
+      <div class="skill-card reveal"><div class="skill-card-title">Web Development</div><div class="tags"><span class="tag">WordPress</span><span class="tag">Elementor</span><span class="tag">WooCommerce</span><span class="tag">On-page SEO</span><span class="tag">HTML / CSS / JS</span></div></div>
     </div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience" style="background: rgba(0,255,136,0.015); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <span class="section-num">// 03</span>
-      <h2 class="section-title">EXPERIENCE</h2>
-      <div class="section-line"></div>
-    </div>
+<section id="experience" style="background:rgba(74,158,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-header reveal"><span class="sec-num">// 03</span><h2 class="sec-title">EXPERIENCE</h2><div class="sec-line"></div></div>
     <div class="timeline">
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">SEP 2025 — PRESENT</div>
-        <div class="timeline-role">Research Associate / Electronics Engineer</div>
-        <div class="timeline-company">Qosain Scientific — Lahore, Pakistan</div>
-        <ul class="timeline-desc">
-          <li>Analog circuit design, PCB design and fabrication, biomedical circuits</li>
-          <li>Microcontroller programming and circuit interfacing</li>
-          <li>Electronics troubleshooting, debugging and quality assurance</li>
-          <li>Developed 3D models to support product prototyping and development</li>
-          <li>Designed low-cost DIY Potentiostat with integrated GUI for electrochemical analysis</li>
-          <li>Designed blood pressure measurement circuitry with signal conditioning</li>
-          <li>Developed electronic circuitry to measure bioelectrical responses of Mimosa pudica</li>
-        </ul>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">SEP 2025 — PRESENT</div><div class="tl-role">Research Associate / Electronics Engineer</div><div class="tl-company">Qosain Scientific — Lahore, Pakistan</div><ul class="tl-desc"><li>Analog circuit design, PCB design and fabrication, biomedical circuits</li><li>Microcontroller programming and circuit interfacing</li><li>Electronics troubleshooting, debugging and quality assurance</li><li>3D modelling for product prototyping (SolidWorks / Fusion 360)</li><li>Designed low-cost DIY Potentiostat with integrated GUI</li><li>Developed blood pressure measurement circuitry with signal conditioning</li><li>Developed circuitry measuring bioelectrical responses of Mimosa pudica</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">JAN 2025 — AUG 2025</div><div class="tl-role">Instrument Developer</div><div class="tl-company">Qosain Scientific — Lahore, Pakistan</div><ul class="tl-desc"><li>Designed experimental setups for PhysLab (electronics & instrumentation)</li><li>Developed and validated hardware-based action potential synthesizer</li><li>Designed qosainscientific.com using WordPress, Elementor & WooCommerce</li><li>Applied on-page SEO, plugin integration, maintenance & optimization</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">MAY 2025 — JUN 2025</div><div class="tl-role">Research Assistant</div><div class="tl-company">LUMS — PhysLab, Lahore</div><ul class="tl-desc"><li>Design, calibration & validation of experimental physics systems</li><li>Supervised by Dr. Sabieh Anwar</li><li>Magnetic damping (eddy currents) experimental setup with full documentation</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">APR 2023</div><div class="tl-role">Electronics Engineering Intern</div><div class="tl-company">Electrical Engineering Services — Lahore</div><ul class="tl-desc"><li>Hands-on electronics engineering internship</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">SEP 2022</div><div class="tl-role">Avionics Engineering Intern</div><div class="tl-company">PAC Kamra — Attock, Pakistan</div><ul class="tl-desc"><li>Avionics systems internship at Pakistan Aeronautical Complex</li></ul></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">NOV 2020 — APR 2023</div><div class="tl-role">Freelance Math Expert</div><div class="tl-company">Photomath — Zagreb, Croatia (Remote)</div><ul class="tl-desc"><li>International math expert contributor for Photomath app</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- WEB DEVELOPMENT -->
+<section id="webdev">
+  <div class="wrap">
+    <div class="sec-header reveal"><span class="sec-num">// 04</span><h2 class="sec-title">WEB DEVELOPMENT</h2><div class="sec-line"></div></div>
+    <div class="webdev-grid">
+      <div class="web-card reveal">
+        <div class="web-card-label">LIVE WEBSITE // PROFESSIONAL</div>
+        <div class="web-screenshot">
+          <div class="browser-bar">
+            <div class="b-dot" style="background:#ff5f56"></div>
+            <div class="b-dot" style="background:#ffbd2e"></div>
+            <div class="b-dot" style="background:#27c93f"></div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--muted);margin-left:.6rem">qosainscientific.com</span>
+          </div>
+          <div class="web-screenshot-inner" style="margin-top:24px">🔬<br><span style="color:var(--blue)">QOSAIN SCIENTIFIC</span><br><span style="font-size:.55rem">Science Instruments & Education</span></div>
+        </div>
+        <div class="web-card-title">Qosain Scientific</div>
+        <div class="web-card-desc">Full e-commerce website designed and built from scratch. Handles product listings, orders, and content. Actively maintained with SEO optimization and performance improvements.</div>
+        <div class="web-tags"><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">WordPress</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">Elementor</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">WooCommerce</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">On-page SEO</span></div>
+        <a href="https://www.qosainscientific.com" target="_blank" class="web-link">Visit Site ↗</a>
       </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">JAN 2025 — AUG 2025</div>
-        <div class="timeline-role">Instrument Developer</div>
-        <div class="timeline-company">Qosain Scientific — Lahore, Pakistan</div>
-        <ul class="timeline-desc">
-          <li>Designed experimental setups for PhysLab with focus on electronics and instrumentation</li>
-          <li>Developed and validated hardware-based action potential synthesizer</li>
-          <li>Analog and digital circuit troubleshooting and debugging</li>
-          <li>Designed Qosain Scientific website using WordPress, Elementor and WooCommerce</li>
-        </ul>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">MAY 2025 — JUN 2025</div>
-        <div class="timeline-role">Research Assistant</div>
-        <div class="timeline-company">LUMS (PhysLab) — Lahore, Pakistan</div>
-        <ul class="timeline-desc">
-          <li>Contributed to design, calibration and validation of experimental physics systems</li>
-          <li>Under supervision of Dr. Sabieh Anwar</li>
-          <li>Developed magnetic damping (eddy currents) experimental setup with full technical documentation</li>
-        </ul>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">APR 2023</div>
-        <div class="timeline-role">Electronics Engineering Intern</div>
-        <div class="timeline-company">Electrical Engineering Services — Lahore</div>
-        <ul class="timeline-desc"><li>Hands-on electronics engineering internship</li></ul>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">SEP 2022</div>
-        <div class="timeline-role">Avionics Engineering Intern</div>
-        <div class="timeline-company">PAC Kamra — Attock, Pakistan</div>
-        <ul class="timeline-desc"><li>Avionics systems internship at Pakistan Aeronautical Complex</li></ul>
-      </div>
-      <div class="timeline-item reveal">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">NOV 2020 — APR 2023</div>
-        <div class="timeline-role">Freelance Math Expert</div>
-        <div class="timeline-company">Photomath — Zagreb, Croatia (Remote)</div>
-        <ul class="timeline-desc"><li>International math expert contributor for Photomath app</li></ul>
+      <div class="web-card reveal">
+        <div class="web-card-label">GITHUB PROFILE // OPEN SOURCE</div>
+        <div class="web-screenshot">
+          <div class="browser-bar">
+            <div class="b-dot" style="background:#ff5f56"></div>
+            <div class="b-dot" style="background:#ffbd2e"></div>
+            <div class="b-dot" style="background:#27c93f"></div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--muted);margin-left:.6rem">github.com/sljamil</span>
+          </div>
+          <div class="web-screenshot-inner" style="margin-top:24px">🐙<br><span style="color:var(--blue)">@sljamil</span><br><span style="font-size:.55rem">Electronics + AI + Web Projects</span></div>
+        </div>
+        <div class="web-card-title">github.com/sljamil</div>
+        <div class="web-card-desc">Open source projects including Duino.ai — an Arduino controlled by AI prompts with an interactive web-based GUI. More hardware-meets-software projects in progress.</div>
+        <div class="web-tags"><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">C++ / Arduino</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">HTML / JS</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">AI Integration</span></div>
+        <a href="https://github.com/sljamil" target="_blank" class="web-link">View GitHub ↗</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <span class="section-num">// 04</span>
-      <h2 class="section-title">PROJECTS</h2>
-      <div class="section-line"></div>
-    </div>
+<section id="projects" style="background:rgba(74,158,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-header reveal"><span class="sec-num">// 05</span><h2 class="sec-title">PROJECTS</h2><div class="sec-line"></div></div>
 
-    <!-- CATEGORY 1: PROFESSIONAL -->
-    <div class="proj-category reveal">
-      <div class="proj-category-label">
-        <span class="proj-cat-icon">💼</span>
-        <span class="proj-cat-title">PROFESSIONAL PROJECTS</span>
-        <span class="proj-cat-sub">// Qosain Scientific & LUMS</span>
-      </div>
-    </div>
-    <div class="projects-grid" style="margin-bottom: 3.5rem;">
-      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
-        <div class="project-num">PRO_01 // Electrochemistry</div>
-        <div class="project-title">DIY Potentiostat with Integrated GUI</div>
-        <div class="project-desc">Designed and developed a low-cost potentiostat for electrochemical analysis of solutions, complete with an integrated GUI for real-time data visualization. Deployed at Qosain Scientific.</div>
-        <div class="project-tech"><span class="tech-tag">Analog Design</span><span class="tech-tag">PCB</span><span class="tech-tag">GUI</span></div>
-      </div>
-      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
-        <div class="project-num">PRO_02 // Biomedical</div>
-        <div class="project-title">Blood Pressure Measurement Circuitry</div>
-        <div class="project-desc">Designed circuitry with signal conditioning and processing for extraction of key physiological parameters from blood pressure waveforms.</div>
-        <div class="project-tech"><span class="tech-tag">Signal Conditioning</span><span class="tech-tag">Analog</span><span class="tech-tag">PCB</span></div>
-      </div>
-      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
-        <div class="project-num">PRO_03 // Biophysics</div>
-        <div class="project-title">Bioelectrical Response of Mimosa Pudica</div>
-        <div class="project-desc">Electronic circuitry to measure bioelectrical signals in the sensitive plant Mimosa pudica in response to external stimuli — bridging electronics and plant biophysics.</div>
-        <div class="project-tech"><span class="tech-tag">Biophysics</span><span class="tech-tag">Instrumentation</span><span class="tech-tag">Embedded</span></div>
-      </div>
-      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
-        <div class="project-num">PRO_04 // Physics Lab</div>
-        <div class="project-title">Magnetic Damping (Eddy Currents) Experimental Setup</div>
-        <div class="project-desc">Developed and validated a complete eddy current experimental setup for PhysLab at LUMS, with full technical documentation for academic deployment. Supervised by Dr. Sabieh Anwar.</div>
-        <div class="project-tech"><span class="tech-tag">Instrumentation</span><span class="tech-tag">Circuit Design</span><span class="tech-tag">Documentation</span></div>
-      </div>
-      <div class="project-card reveal" style="border-top: 2px solid var(--green);">
-        <div class="project-num">PRO_05 // Neuroscience</div>
-        <div class="project-title">Action Potential Synthesizer</div>
-        <div class="project-desc">Developed and validated a hardware-based action potential synthesizer using circuit simulation and physical prototyping for PhysLab experimental use.</div>
-        <div class="project-tech"><span class="tech-tag">Analog</span><span class="tech-tag">Simulation</span><span class="tech-tag">Prototyping</span></div>
-      </div>
-    </div>
-
-    <!-- CATEGORY 2: FINAL YEAR PROJECT -->
-    <div class="proj-category reveal">
-      <div class="proj-category-label">
-        <span class="proj-cat-icon">🎓</span>
-        <span class="proj-cat-title">FINAL YEAR PROJECT</span>
-        <span class="proj-cat-sub">// NUST — College of Aeronautical Engineering</span>
-      </div>
-    </div>
-    <div class="projects-grid" style="margin-bottom: 3.5rem;">
-      <div class="project-card reveal" style="border-top: 2px solid var(--orange); grid-column: 1 / -1; max-width: 700px;">
-        <div class="project-num">FYP_01 // Sep 2022 – Sep 2023</div>
-        <div class="project-title">Non-Invasive Glucose Monitoring Using Near-Infrared Spectroscopy</div>
-        <div class="project-desc">Developed a Near-Infrared (NIR) spectroscopy-based glucose sensor prototype tested on aqueous solutions, fruit samples, and human subjects non-invasively. Supervised by Dr. Adnan Shah and Dr. Waqar Ahmad.</div>
-        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(255,107,0,0.4);color:var(--orange);background:rgba(255,107,0,0.06);">NIR Spectroscopy</span><span class="tech-tag" style="border-color:rgba(255,107,0,0.4);color:var(--orange);background:rgba(255,107,0,0.06);">Signal Processing</span><span class="tech-tag" style="border-color:rgba(255,107,0,0.4);color:var(--orange);background:rgba(255,107,0,0.06);">MATLAB</span><span class="tech-tag" style="border-color:rgba(255,107,0,0.4);color:var(--orange);background:rgba(255,107,0,0.06);">Optical Sensing</span></div>
-      </div>
-    </div>
-
-    <!-- CATEGORY 3: SEMESTER / COURSE PROJECTS -->
-    <div class="proj-category reveal">
-      <div class="proj-category-label">
-        <span class="proj-cat-icon">📚</span>
-        <span class="proj-cat-title">SEMESTER & COURSE PROJECTS</span>
-        <span class="proj-cat-sub">// NUST — Academic Coursework</span>
-      </div>
-    </div>
+    <!-- PROFESSIONAL -->
+    <div class="proj-cat-bar reveal"><span class="proj-cat-icon">💼</span><span class="proj-cat-title">PROFESSIONAL PROJECTS</span><span class="proj-cat-sub">// Qosain Scientific · LUMS · Personal</span></div>
     <div class="projects-grid">
-      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
-        <div class="project-num">SEM_01 // Control Systems</div>
-        <div class="project-title">PID-Controlled Self-Balancing Robot</div>
-        <div class="project-desc">Self-balancing robot using a PID controller implemented in MATLAB with LEGO Mindstorms EV3 hardware.</div>
-        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">MATLAB</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">PID</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">LEGO EV3</span></div>
+
+      <div class="proj-card pro reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_01 // AI + Embedded · GitHub</div><div class="proj-title">Duino.ai — Arduino Controlled by AI</div><div class="proj-brief">Control Arduino hardware using natural language AI prompts through an interactive web-based GUI dashboard.</div></div>
+        <div class="proj-tech"><span class="tag">Arduino / C++</span><span class="tag">HTML / JS</span><span class="tag">AI API</span><span class="tag">Node.js</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Problem</div><div class="expand-text">Controlling Arduino hardware typically requires writing and uploading code for each new task. This project removes that barrier entirely by allowing natural language commands via AI.</div></div>
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Built a relay server in Node.js that passes user prompts to an AI API. The AI generates Arduino commands which are sent over serial to the microcontroller. A web-based GUI dashboard provides the interface.</div></div>
+          <div class="expand-row"><div class="expand-label">Tech Stack</div><div class="expand-text">Arduino IDE (C++), HTML/CSS/JS dashboard, Node.js relay server, AI API integration, serial communication.</div></div>
+          <div class="expand-row"><div class="expand-label">Outcome</div><div class="expand-text">Working prototype that lets users interact with physical hardware through conversational AI. Published on GitHub as open source.</div></div>
+          <div class="expand-links"><a href="https://github.com/sljamil/Duino.ai" target="_blank" class="expand-link gh">GitHub Repo ↗</a></div>
+        </div></div>
       </div>
-      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
-        <div class="project-num">SEM_02 // Robotics</div>
-        <div class="project-title">Goalkeeper Robot Using LEGO Mindstorms EV3</div>
-        <div class="project-desc">Designed a goalkeeper robot using LEGO Mindstorms EV3 with MATLAB-based control logic for real-time ball tracking and blocking.</div>
-        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">MATLAB</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">LEGO EV3</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">Robotics</span></div>
+
+      <div class="proj-card pro reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_02 // Electrochemistry</div><div class="proj-title">DIY Potentiostat with Integrated GUI</div><div class="proj-brief">Low-cost electrochemical analysis instrument with real-time data visualization interface.</div></div>
+        <div class="proj-tech"><span class="tag">Analog Design</span><span class="tag">PCB</span><span class="tag">GUI</span><span class="tag">Op-Amps</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Problem</div><div class="expand-text">Commercial potentiostats cost thousands of dollars, making electrochemical research inaccessible for low-resource labs.</div></div>
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Designed a precision analog front-end with op-amp-based voltage control and current measurement, custom PCB layout, and integrated GUI for real-time cyclic voltammetry plots.</div></div>
+          <div class="expand-row"><div class="expand-label">Challenges</div><div class="expand-text">Achieving sub-microamp current resolution at low cost required careful op-amp selection, shielding, and noise management in the PCB layout.</div></div>
+          <div class="expand-row"><div class="expand-label">Outcome</div><div class="expand-text">Functional low-cost potentiostat deployed at Qosain Scientific for electrochemical solution analysis.</div></div>
+        </div></div>
       </div>
-      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
-        <div class="project-num">SEM_03 // RF Engineering</div>
-        <div class="project-title">Reconfigurable Dual-Band Antenna</div>
-        <div class="project-desc">Designed a reconfigurable dual-band antenna using a shared aperture approach, simulated and optimized in Ansys HFSS.</div>
-        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">HFSS</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">RF Design</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">Antenna</span></div>
+
+      <div class="proj-card pro reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_03 // Biomedical</div><div class="proj-title">Blood Pressure Measurement Circuitry</div><div class="proj-brief">Signal conditioning and processing circuitry for extraction of physiological parameters from BP waveforms.</div></div>
+        <div class="proj-tech"><span class="tag">Signal Conditioning</span><span class="tag">Analog</span><span class="tag">PCB</span><span class="tag">Filters</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Designed instrumentation amplifier front-end with active bandpass filtering, ADC interfacing, and digital signal processing to extract systolic, diastolic, and mean arterial pressure values.</div></div>
+          <div class="expand-row"><div class="expand-label">Outcome</div><div class="expand-text">Validated hardware capable of extracting physiological parameters from pressure waveforms, developed at Qosain Scientific.</div></div>
+        </div></div>
       </div>
-      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
-        <div class="project-num">SEM_04 // Radar Systems</div>
-        <div class="project-title">KLD-7 Radar — Distance Measurement</div>
-        <div class="project-desc">Implemented KLD-7 radar for real-time distance measurement with LCD display output and MATLAB signal processing pipeline.</div>
-        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">Radar</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">MATLAB</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">AVR</span></div>
+
+      <div class="proj-card pro reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_04 // Biophysics</div><div class="proj-title">Bioelectrical Response of Mimosa Pudica</div><div class="proj-brief">Circuitry to measure micro-volt bioelectrical signals of the sensitive plant under external stimuli.</div></div>
+        <div class="proj-tech"><span class="tag">Biophysics</span><span class="tag">Instrumentation</span><span class="tag">Low-Noise Amp</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Problem</div><div class="expand-text">Mimosa pudica produces measurable electrical action potentials when touched. Capturing these micro-volt signals from a plant requires extremely sensitive, low-noise electronics.</div></div>
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Designed high-gain, low-noise differential amplifier circuit with careful electrode interface design, shielded cabling, and filtering to isolate plant bioelectrical signals from noise.</div></div>
+          <div class="expand-row"><div class="expand-label">Outcome</div><div class="expand-text">Successfully captured bioelectrical responses — a unique intersection of electronics and plant biophysics.</div></div>
+        </div></div>
       </div>
-      <div class="project-card reveal" style="border-top: 2px solid var(--cyan);">
-        <div class="project-num">SEM_05 // Communications</div>
-        <div class="project-title">SDR-Based FM Transceiver</div>
-        <div class="project-desc">Designed a software-defined radio FM transceiver for real-time audio transmission and reception, implemented in MATLAB.</div>
-        <div class="project-tech"><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">SDR</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">MATLAB</span><span class="tech-tag" style="border-color:rgba(0,229,255,0.3);color:var(--cyan);">FM</span></div>
+
+      <div class="proj-card pro reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_05 // Physics Lab · LUMS</div><div class="proj-title">Magnetic Damping Experimental Setup</div><div class="proj-brief">Complete eddy current experimental apparatus for PhysLab at LUMS with full academic documentation.</div></div>
+        <div class="proj-tech"><span class="tag">Instrumentation</span><span class="tag">Circuit Design</span><span class="tag">Documentation</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Context</div><div class="expand-text">Developed under supervision of Dr. Sabieh Anwar at LUMS PhysLab — a world-class physics teaching laboratory known for its experimental apparatus.</div></div>
+          <div class="expand-row"><div class="expand-label">Outcome</div><div class="expand-text">Validated experimental setup with complete technical documentation, ready for undergraduate academic deployment.</div></div>
+        </div></div>
+      </div>
+
+      <div class="proj-card pro reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_06 // Neuroscience Hardware</div><div class="proj-title">Action Potential Synthesizer</div><div class="proj-brief">Hardware-based synthesizer replicating biological action potentials using analog circuitry.</div></div>
+        <div class="proj-tech"><span class="tag">Analog</span><span class="tag">Simulation</span><span class="tag">Prototyping</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Modelled Hodgkin-Huxley-style action potential waveforms using analog circuits (RC networks, comparators, op-amps) to produce realistic neural spike shapes for lab use.</div></div>
+          <div class="expand-row"><div class="expand-label">Outcome</div><div class="expand-text">Validated hardware action potential synthesizer deployed for PhysLab experimental use at Qosain Scientific.</div></div>
+        </div></div>
+      </div>
+
+    </div>
+
+    <!-- FYP -->
+    <div class="proj-cat-bar fyp reveal"><span class="proj-cat-icon">🎓</span><span class="proj-cat-title">FINAL YEAR PROJECT</span><span class="proj-cat-sub">// NUST · College of Aeronautical Engineering</span></div>
+    <div class="projects-grid">
+      <div class="proj-card fyp-c fyp-full reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">FYP_01 // Sep 2022 – Sep 2023</div><div class="proj-title">Non-Invasive Glucose Monitoring Using Near-Infrared Spectroscopy</div><div class="proj-brief">NIR spectroscopy-based glucose sensor prototype tested on aqueous solutions, fruit samples, and human subjects non-invasively. Supervised by Dr. Adnan Shah & Dr. Waqar Ahmad.</div></div>
+        <div class="proj-tech"><span class="tag">NIR Spectroscopy</span><span class="tag">Signal Processing</span><span class="tag">MATLAB</span><span class="tag">Optical Sensing</span><span class="tag">Embedded</span></div>
+        <div class="proj-toggle"><span>FULL DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Problem</div><div class="expand-text">Current glucose monitoring requires blood draws (finger pricks), causing discomfort and infection risk. A non-invasive optical alternative would transform diabetes management globally.</div></div>
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Used Near-Infrared (NIR) light to illuminate tissue. Different glucose concentrations absorb NIR at characteristic wavelengths. A photodetector captures the transmitted/reflected light and MATLAB processes the spectral data to predict glucose concentration using regression models.</div></div>
+          <div class="expand-row"><div class="expand-label">Testing</div><div class="expand-text">Validated on three progressive stages: aqueous glucose solutions (ground truth), fruit samples (biological matrix), and non-invasive human fingertip measurements.</div></div>
+          <div class="expand-row"><div class="expand-label">Tech Stack</div><div class="expand-text">NIR LED array, photodetector, transimpedance amplifier, ADC, MATLAB (signal processing + regression modelling), custom optical housing.</div></div>
+          <div class="expand-row"><div class="expand-label">Outcome</div><div class="expand-text">Working prototype demonstrating correlation between NIR absorbance and glucose concentration. Presented and approved as BS final year project at NUST CAE under dual supervision.</div></div>
+        </div></div>
       </div>
     </div>
 
+    <!-- SEMESTER -->
+    <div class="proj-cat-bar sem reveal"><span class="proj-cat-icon">📚</span><span class="proj-cat-title">SEMESTER & COURSE PROJECTS</span><span class="proj-cat-sub">// NUST · Academic Coursework</span></div>
+    <div class="projects-grid">
+
+      <div class="proj-card sem-c reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">SEM_01 // Control Systems</div><div class="proj-title">PID-Controlled Self-Balancing Robot</div><div class="proj-brief">Self-balancing robot using PID controller in MATLAB with LEGO Mindstorms EV3.</div></div>
+        <div class="proj-tech"><span class="tag">MATLAB</span><span class="tag">PID</span><span class="tag">LEGO EV3</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Modelled the inverted pendulum dynamics and implemented a PID controller tuned via MATLAB to maintain balance. Gyroscope feedback from EV3 sensors used for real-time angle correction.</div></div>
+          <div class="expand-row"><div class="expand-label">Outcome</div><div class="expand-text">Robot successfully maintains upright balance and recovers from small disturbances using the tuned PID controller.</div></div>
+        </div></div>
+      </div>
+
+      <div class="proj-card sem-c reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">SEM_02 // Robotics</div><div class="proj-title">Goalkeeper Robot</div><div class="proj-brief">LEGO EV3 goalkeeper robot with MATLAB-based real-time ball tracking and blocking.</div></div>
+        <div class="proj-tech"><span class="tag">MATLAB</span><span class="tag">LEGO EV3</span><span class="tag">Robotics</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Used ultrasonic and IR sensors to detect incoming ball trajectory and MATLAB control logic to command servo movements to intercept the ball in real time.</div></div>
+        </div></div>
+      </div>
+
+      <div class="proj-card sem-c reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">SEM_03 // RF Engineering</div><div class="proj-title">Reconfigurable Dual-Band Antenna</div><div class="proj-brief">Dual-band shared aperture antenna designed and optimised in Ansys HFSS.</div></div>
+        <div class="proj-tech"><span class="tag">HFSS</span><span class="tag">RF Design</span><span class="tag">Antenna</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Designed a patch antenna with PIN diode-switched elements to reconfigure between two operating frequency bands using a shared aperture, optimised through HFSS parametric simulations.</div></div>
+        </div></div>
+      </div>
+
+      <div class="proj-card sem-c reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">SEM_04 // Radar Systems</div><div class="proj-title">KLD-7 Radar — Distance Measurement</div><div class="proj-brief">Real-time distance measurement with LCD display and MATLAB signal processing pipeline.</div></div>
+        <div class="proj-tech"><span class="tag">Radar</span><span class="tag">MATLAB</span><span class="tag">AVR</span><span class="tag">LCD</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Interfaced KLD-7 Doppler radar module with AVR microcontroller, processed frequency output to calculate target distance/velocity, displayed on LCD, and logged data to MATLAB for analysis.</div></div>
+        </div></div>
+      </div>
+
+      <div class="proj-card sem-c reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top"></div>
+        <div class="proj-card-head"><div class="proj-num">SEM_05 // Communications</div><div class="proj-title">SDR-Based FM Transceiver</div><div class="proj-brief">Software-defined radio FM transceiver for real-time audio TX/RX in MATLAB.</div></div>
+        <div class="proj-tech"><span class="tag">SDR</span><span class="tag">MATLAB</span><span class="tag">FM</span><span class="tag">DSP</span></div>
+        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Used an SDR hardware dongle with MATLAB's Communications Toolbox to implement FM modulation/demodulation in software, enabling real-time audio transmission and reception over the air.</div></div>
+        </div></div>
+      </div>
+
+    </div>
   </div>
 </section>
 
 <!-- EDUCATION -->
-<section id="education" style="background: rgba(0,255,136,0.015); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <span class="section-num">// 05</span>
-      <h2 class="section-title">EDUCATION</h2>
-      <div class="section-line"></div>
-    </div>
+<section id="education">
+  <div class="wrap">
+    <div class="sec-header reveal"><span class="sec-num">// 06</span><h2 class="sec-title">EDUCATION</h2><div class="sec-line"></div></div>
     <div class="edu-grid">
-      <div class="edu-card reveal" data-year="2023">
-        <div class="edu-degree">BS Avionics Engineering</div>
-        <div class="edu-school">NUST — College of Aeronautical Engineering</div>
-        <div class="edu-location">📍 Risalpur, Pakistan &nbsp;|&nbsp; Grad. Sep 2023</div>
-      </div>
-      <div class="edu-card reveal" data-year="2019">
-        <div class="edu-degree">Intermediate</div>
-        <div class="edu-school">Govt. Degree College</div>
-        <div class="edu-location">📍 Fatehpur, Pakistan &nbsp;|&nbsp; Grad. Sep 2019</div>
-      </div>
+      <div class="edu-card reveal" data-year="2023"><div class="edu-degree">BS Avionics Engineering</div><div class="edu-school">NUST — College of Aeronautical Engineering</div><div class="edu-loc">📍 Risalpur, Pakistan &nbsp;|&nbsp; Grad. Sep 2023</div></div>
+      <div class="edu-card reveal" data-year="2019"><div class="edu-degree">Intermediate</div><div class="edu-school">Govt. Degree College</div><div class="edu-loc">📍 Fatehpur, Pakistan &nbsp;|&nbsp; Grad. Sep 2019</div></div>
     </div>
-
-    <div style="margin-top: 3rem;">
-      <h3 style="font-family:'Orbitron',monospace; font-size:1rem; color:var(--cyan); letter-spacing:2px; margin-bottom:1.5rem;">CERTIFICATES & HONORS</h3>
-      <div class="certs-grid">
-        <div class="cert-item reveal">
-          <div class="cert-icon">🔬</div>
-          <div class="cert-info">
-            <div class="cert-title">Advanced Workshop on Circuit Theory, Measurements and Design</div>
-            <div class="cert-meta">Hardware-X / Prof. Asad Ali Abidi — 2025</div>
-          </div>
-        </div>
-        <div class="cert-item reveal">
-          <div class="cert-icon">🔭</div>
-          <div class="cert-info">
-            <div class="cert-title">Science Demonstrator</div>
-            <div class="cert-meta">Lahore Science Mela (LSM) — 2025</div>
-          </div>
-        </div>
-        <div class="cert-item reveal">
-          <div class="cert-icon">🏆</div>
-          <div class="cert-info">
-            <div class="cert-title">Social Media Head — Hult Prize</div>
-            <div class="cert-meta">International — 2022–2023</div>
-          </div>
-        </div>
-        <div class="cert-item reveal">
-          <div class="cert-icon">🛩️</div>
-          <div class="cert-info">
-            <div class="cert-title">Adventure Club Head — The Aviators Society</div>
-            <div class="cert-meta">NUST — 2020–2023</div>
-          </div>
-        </div>
-        <div class="cert-item reveal">
-          <div class="cert-icon">📐</div>
-          <div class="cert-info">
-            <div class="cert-title">International Math Expert</div>
-            <div class="cert-meta">Photomath — 2020–2023</div>
-          </div>
-        </div>
-        <div class="cert-item reveal">
-          <div class="cert-icon">📜</div>
-          <div class="cert-info">
-            <div class="cert-title">Digital Marketing & Freelancing</div>
-            <div class="cert-meta">DigiSkills — 2021</div>
-          </div>
-        </div>
-      </div>
+    <h3 style="font-family:'IBM Plex Mono',monospace;font-size:.9rem;color:var(--cyan);letter-spacing:2px;margin:3rem 0 1.5rem">// CERTIFICATES & HONORS</h3>
+    <div class="certs-grid">
+      <div class="cert-item reveal"><div class="cert-icon">🔬</div><div><div class="cert-title">Advanced Workshop on Circuit Theory, Measurements & Design</div><div class="cert-meta">Hardware-X / Prof. Asad Ali Abidi — 2025</div></div></div>
+      <div class="cert-item reveal"><div class="cert-icon">🔭</div><div><div class="cert-title">Science Demonstrator</div><div class="cert-meta">Lahore Science Mela (LSM) — 2025</div></div></div>
+      <div class="cert-item reveal"><div class="cert-icon">🏆</div><div><div class="cert-title">Social Media Head — Hult Prize</div><div class="cert-meta">International — 2022–2023</div></div></div>
+      <div class="cert-item reveal"><div class="cert-icon">🛩️</div><div><div class="cert-title">Adventure Club Head — The Aviators Society</div><div class="cert-meta">NUST — 2020–2023</div></div></div>
+      <div class="cert-item reveal"><div class="cert-icon">📐</div><div><div class="cert-title">International Math Expert</div><div class="cert-meta">Photomath — 2020–2023</div></div></div>
+      <div class="cert-item reveal"><div class="cert-icon">📜</div><div><div class="cert-title">Digital Marketing & Freelancing</div><div class="cert-meta">DigiSkills — 2021</div></div></div>
     </div>
   </div>
 </section>
 
 <!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="section-wrap">
-    <div class="section-header reveal">
-      <span class="section-num">// 06</span>
-      <h2 class="section-title">PUBLICATIONS</h2>
-      <div class="section-line"></div>
-    </div>
+<section id="publications" style="background:rgba(74,158,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="sec-header reveal"><span class="sec-num">// 07</span><h2 class="sec-title">PUBLICATIONS</h2><div class="sec-line"></div></div>
     <div class="pub-list">
-      <div class="pub-item reveal">
-        <div class="pub-title">Add your publication title here — e.g. "Design and Development of a Low-Cost Potentiostat for Electrochemical Analysis"</div>
-        <div class="pub-meta">Journal / Conference Name &nbsp;•&nbsp; Year &nbsp;•&nbsp; Authors</div>
-      </div>
-      <div class="pub-item reveal">
-        <div class="pub-title">Add your second publication title here</div>
-        <div class="pub-meta">Journal / Conference Name &nbsp;•&nbsp; Year &nbsp;•&nbsp; Authors</div>
-      </div>
+      <div class="pub-item reveal"><div class="pub-title">Add your publication title here — update with your actual paper</div><div class="pub-meta">Journal / Conference &nbsp;·&nbsp; Year &nbsp;·&nbsp; Authors</div></div>
+      <div class="pub-item reveal"><div class="pub-title">Add second publication title here</div><div class="pub-meta">Journal / Conference &nbsp;·&nbsp; Year &nbsp;·&nbsp; Authors</div></div>
     </div>
-    <p style="font-family:'Share Tech Mono',monospace; font-size:0.7rem; color:var(--muted); margin-top:1.5rem; letter-spacing:1px;">
-      // Update the publication entries above with your actual publications before publishing.
-    </p>
+    <p style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:1.2rem;letter-spacing:1px">// Replace placeholder entries above with your actual publications before going live.</p>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-wrap">
+  <div class="wrap">
     <div class="contact-inner reveal">
       <div class="contact-title">LET'S <span>CONNECT</span></div>
-      <p style="color:var(--muted); max-width:500px; line-height:1.8; font-size:0.9rem;">Open to research collaborations, freelance electronics projects, and full-time opportunities in electronics engineering and instrumentation.</p>
+      <p style="color:var(--muted);max-width:480px;line-height:1.9;font-size:.88rem">Open to research collaborations, freelance electronics projects, and full-time roles in electronics engineering, instrumentation, or embedded systems.</p>
       <div class="contact-links">
-        <a href="/cdn-cgi/l/email-protection#d5bfb4b8b4b9b9bcb4a4b4a1e4e5e4b9ac95b2b8b4bcb9fbb6bab8" class="contact-link">
-          <span>✉</span> <span class="__cf_email__" data-cfemail="f79d969a969b9b9e96869683c6c7c69b8eb7909a969e9bd994989a">[email&#160;protected]</span>
-        </a>
-        <a href="https://linkedin.com/in/jamal-liaqat" target="_blank" class="contact-link">
-          <span>in</span> jamal-liaqat
-        </a>
-        <a href="tel:+92344179001" class="contact-link">
-          <span>📞</span> +92 344 179 001
-        </a>
+        <a href="mailto:jamalliaqat101ly@gmail.com" class="contact-link">✉ jamalliaqat101ly@gmail.com</a>
+        <a href="https://linkedin.com/in/jamal-liaqat" target="_blank" class="contact-link">in LinkedIn</a>
+        <a href="https://github.com/sljamil" target="_blank" class="contact-link">⌥ github.com/sljamil</a>
+        <a href="tel:+92344179001" class="contact-link">📞 +92 344 179 001</a>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  © 2025 JAMAL LIAQAT &nbsp;•&nbsp; ELECTRONICS ENGINEER &nbsp;•&nbsp; LAHORE, PAKISTAN
+  <div>© 2025 JAMAL LIAQAT &nbsp;·&nbsp; ELECTRONICS ENGINEER &nbsp;·&nbsp; LAHORE, PAKISTAN</div>
+  <div class="bp-block">
+    <span style="font-size:.55rem;color:var(--dim)">DRAWING NO.</span>
+    <span style="color:var(--blue)">JL-PORTFOLIO-v2.0</span>
+    <span style="font-size:.55rem;color:var(--dim)">BLUEPRINT DARK · REV.A</span>
+  </div>
 </footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e,i) => {
+    if(e.isIntersecting){
+      setTimeout(()=>e.target.classList.add('visible'),i*70);
+      obs.unobserve(e.target);
+    }
+  });
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function toggleCard(card){
+  const isOpen = card.classList.contains('open');
+  card.closest('.projects-grid').querySelectorAll('.proj-card.open').forEach(c=>{
+    if(c!==card) c.classList.remove('open');
+  });
+  card.classList.toggle('open',!isOpen);
+}
 </script>
 </body>
 </html>
