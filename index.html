@@ -45,10 +45,12 @@ section{position:relative;z-index:1}
 /* ABOUT */
 #about{background:rgba(74,158,255,.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .about-grid{display:grid;grid-template-columns:180px 1fr;gap:3rem;align-items:start}
+/*
 .avatar-frame{width:180px;height:180px;border:1px solid var(--blue);position:relative;overflow:hidden;flex-shrink:0}
 .avatar-frame::before,.avatar-frame::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--cyan);border-style:solid;z-index:2}
 .avatar-frame::before{top:-1px;right:-1px;border-width:2px 2px 0 0}
-.avatar-frame::after{bottom:-1px;left:-1px;border-width:0 0 2px 2px}
+.avatar-frame::after{bottom:-1px;left:-1px;border-width:0 0 2px 2px} 
+*/
 .avatar-ph{width:100%;height:100%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
 .avatar-ph span{font-family:'IBM Plex Mono',monospace;font-size:.55rem;color:var(--muted);letter-spacing:2px;text-align:center}
 .about-text p{line-height:1.9;color:var(--muted);font-size:.9rem;margin-bottom:.9rem}
@@ -227,9 +229,9 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
     <div class="sec-header reveal"><span class="sec-num">// 01</span><h2 class="sec-title">ABOUT ME</h2><div class="sec-line"></div></div>
     <div class="about-grid reveal">
       <div class="avatar-frame">
-        <div class="avatar-frame">
+       <!-- <div class="avatar-frame">
             <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;" alt="Jamal Liaqat">
-        </div>
+        </div> -->
       </div>
       <div class="about-text">
         <p>I'm <strong>Jamal Liaqat</strong>, an Electronics Engineer and Research Associate at <strong>Qosain Scientific</strong>, Lahore. I hold a BS in Avionics Engineering from the <strong>College of Aeronautical Engineering, NUST</strong>.</p>
