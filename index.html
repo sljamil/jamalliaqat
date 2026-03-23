@@ -44,15 +44,7 @@ section{position:relative;z-index:1}
 
 /* ABOUT */
 #about{background:rgba(74,158,255,.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.about-grid{display:block;grid-template-columns:250px 1fr;gap:3rem;align-items:center}
-/*
-.avatar-frame{width:180px;height:180px;border:1px solid var(--blue);position:relative;overflow:hidden;flex-shrink:0}
-.avatar-frame::before,.avatar-frame::after{content:'';position:absolute;width:16px;height:16px;border-color:var(--cyan);border-style:solid;z-index:2}
-.avatar-frame::before{top:-1px;right:-1px;border-width:2px 2px 0 0}
-.avatar-frame::after{bottom:-1px;left:-1px;border-width:0 0 2px 2px} 
-*/
-.avatar-ph{width:100%;height:100%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
-.avatar-ph span{font-family:'IBM Plex Mono',monospace;font-size:.55rem;color:var(--muted);letter-spacing:2px;text-align:center}
+.about-grid{display:block}
 .about-text p{line-height:1.9;color:var(--muted);font-size:.9rem;margin-bottom:.9rem}
 .about-text p strong{color:var(--blue);font-weight:600}
 .about-stats{display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
@@ -83,7 +75,7 @@ section{position:relative;z-index:1}
 
 /* WEB DEV */
 #webdev{background:rgba(0,212,255,.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.webdev-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.webdev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
 .web-card{background:var(--card);border:1px solid var(--border);padding:1.8rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
 .web-card:hover{border-color:var(--cyan);transform:translateY(-3px)}
 .web-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .3s}
@@ -212,7 +204,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-tag">Electronics Engineer // Analog · Biomedical · Embedded</div>
+  <div class="hero-tag">Electronics Engineer // Analog · Biomedical · Embedded · AI Apps</div>
   <h1 class="hero-name">JAMAL <span>LIAQAT</span></h1>
   <div class="hero-sub">Research Associate &nbsp;·&nbsp; PCB Designer &nbsp;·&nbsp; Instrument Developer</div>
   <p class="hero-desc">Avionics engineering graduate building scientific instruments at Qosain Scientific, Lahore. Specialising in analog circuit design, biomedical electronics, PCB fabrication, and embedded systems.</p>
@@ -228,11 +220,6 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
   <div class="wrap">
     <div class="sec-header reveal"><span class="sec-num">// 01</span><h2 class="sec-title">ABOUT ME</h2><div class="sec-line"></div></div>
     <div class="about-grid reveal">
-      <div class="avatar-frame">
-       <!-- <div class="avatar-frame">
-            <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;" alt="Jamal Liaqat">
-        </div> -->
-      </div>
       <div class="about-text">
         <p>I'm <strong>Jamal Liaqat</strong>, an Electronics Engineer and Research Associate at <strong>Qosain Scientific</strong>, Lahore. I hold a BS in Avionics Engineering from the <strong>College of Aeronautical Engineering, NUST</strong>.</p>
         <p>My work sits at the intersection of analog electronics, biomedical instrumentation, and embedded systems — designing circuits that measure the physical world with precision, from blood pressure waveforms to bioelectrical plant signals.</p>
@@ -310,10 +297,38 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
           <div class="web-screenshot-inner" style="margin-top:24px">🐙<br><span style="color:var(--blue)">@sljamil</span><br><span style="font-size:.55rem">Electronics + AI + Web Projects</span></div>
         </div>
         <div class="web-card-title">github.com/sljamil</div>
-        <div class="web-card-desc">Open source projects including Duino.ai — an Arduino controlled by AI prompts with an interactive web-based GUI. More hardware-meets-software projects in progress.</div>
+        <div class="web-card-desc">Open source projects including Duino.ai and DietDeck — hardware-meets-AI and full-stack web projects. More in progress.</div>
         <div class="web-tags"><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">C++ / Arduino</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">HTML / JS</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">AI Integration</span></div>
         <a href="https://github.com/sljamil" target="_blank" class="web-link">View GitHub ↗</a>
       </div>
+
+      <!-- DietDeck -->
+      <div class="web-card reveal">
+        <div class="web-card-label">LIVE APP // FULL-STACK · AI-POWERED</div>
+        <div class="web-screenshot">
+          <div class="browser-bar">
+            <div class="b-dot" style="background:#ff5f56"></div>
+            <div class="b-dot" style="background:#ffbd2e"></div>
+            <div class="b-dot" style="background:#27c93f"></div>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--muted);margin-left:.6rem">dietdeck.netlify.app</span>
+          </div>
+          <div class="web-screenshot-inner" style="margin-top:24px">🥗<br><span style="color:var(--green)">DIETDECK</span><br><span style="font-size:.55rem">AI-Powered Nutrition Tracker</span></div>
+        </div>
+        <div class="web-card-title">DietDeck</div>
+        <div class="web-card-desc">Full-stack nutrition tracker with live food search across 600k+ USDA foods, AI estimates for regional dishes (biryani, paratha, dal), personalised meal planning and weekly progress views.</div>
+        <div class="web-tags">
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">HTML/CSS/JS</span>
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">Node.js</span>
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">Netlify Functions</span>
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">LLaMA 3.3 / Groq</span>
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">USDA API</span>
+        </div>
+        <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+          <a href="https://dietdeck.netlify.app" target="_blank" class="web-link" style="border-color:rgba(0,229,160,.3);color:var(--green)">Live App ↗</a>
+          <a href="https://github.com/sljamil/Dietdeck" target="_blank" class="web-link">GitHub ↗</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -323,27 +338,61 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
   <div class="wrap">
     <div class="sec-header reveal"><span class="sec-num">// 05</span><h2 class="sec-title">PROJECTS</h2><div class="sec-line"></div></div>
 
-    <!-- PROFESSIONAL -->
-    <div class="proj-cat-bar reveal"><span class="proj-cat-icon">💼</span><span class="proj-cat-title">PROFESSIONAL PROJECTS</span><span class="proj-cat-sub">// Qosain Scientific · LUMS · Personal</span></div>
+    <!-- PERSONAL / SIDE PROJECTS -->
+    <div class="proj-cat-bar reveal" style="border-left-color:var(--green)"><span class="proj-cat-icon">🚀</span><span class="proj-cat-title" style="color:var(--green)">PERSONAL PROJECTS</span><span class="proj-cat-sub">// Built for curiosity & learning</span></div>
     <div class="projects-grid">
 
       <div class="proj-card pro reveal" onclick="toggleCard(this)">
-        <div class="proj-card-top"></div>
-        <div class="proj-card-head"><div class="proj-num">PRO_01 // AI + Embedded · GitHub</div><div class="proj-title">Duino.ai — Arduino Controlled by AI</div><div class="proj-brief">Control Arduino hardware using natural language AI prompts through an interactive web-based GUI dashboard.</div></div>
+        <div class="proj-card-top" style="background:var(--green)"></div>
+        <div class="proj-card-head"><div class="proj-num" style="color:var(--green)">PERSONAL_01 // AI + Embedded · GitHub</div><div class="proj-title">Duino.ai — Arduino Controlled by AI</div><div class="proj-brief">Control Arduino hardware using natural language AI prompts through an interactive web-based GUI dashboard.</div></div>
         <div class="proj-tech"><span class="tag">Arduino / C++</span><span class="tag">HTML / JS</span><span class="tag">AI API</span><span class="tag">Node.js</span></div>
-        <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-toggle" style="color:var(--green)"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
         <div class="proj-expand"><div class="proj-expand-inner">
-          <div class="expand-row"><div class="expand-label">Problem</div><div class="expand-text">Controlling Arduino hardware typically requires writing and uploading code for each new task. This project removes that barrier entirely by allowing natural language commands via AI.</div></div>
-          <div class="expand-row"><div class="expand-label">Approach</div><div class="expand-text">Built a relay server in Node.js that passes user prompts to an AI API. The AI generates Arduino commands which are sent over serial to the microcontroller. A web-based GUI dashboard provides the interface.</div></div>
-          <div class="expand-row"><div class="expand-label">Tech Stack</div><div class="expand-text">Arduino IDE (C++), HTML/CSS/JS dashboard, Node.js relay server, AI API integration, serial communication.</div></div>
-          <div class="expand-row"><div class="expand-label">Outcome</div><div class="expand-text">Working prototype that lets users interact with physical hardware through conversational AI. Published on GitHub as open source.</div></div>
+          <div class="expand-row"><div class="expand-label" style="color:var(--green)">Problem</div><div class="expand-text">Controlling Arduino hardware typically requires writing and uploading code for each new task. This project removes that barrier entirely by allowing natural language commands via AI.</div></div>
+          <div class="expand-row"><div class="expand-label" style="color:var(--green)">Approach</div><div class="expand-text">Built a relay server in Node.js that passes user prompts to an AI API. The AI generates Arduino commands which are sent over serial to the microcontroller. A web-based GUI dashboard provides the interface.</div></div>
+          <div class="expand-row"><div class="expand-label" style="color:var(--green)">Tech Stack</div><div class="expand-text">Arduino IDE (C++), HTML/CSS/JS dashboard, Node.js relay server, AI API integration, serial communication.</div></div>
+          <div class="expand-row"><div class="expand-label" style="color:var(--green)">Outcome</div><div class="expand-text">Working prototype that lets users interact with physical hardware through conversational AI. Published on GitHub as open source.</div></div>
           <div class="expand-links"><a href="https://github.com/sljamil/Duino.ai" target="_blank" class="expand-link gh">GitHub Repo ↗</a></div>
         </div></div>
       </div>
 
       <div class="proj-card pro reveal" onclick="toggleCard(this)">
+        <div class="proj-card-top" style="background:var(--green)"></div>
+        <div class="proj-card-head">
+          <div class="proj-num" style="color:var(--green)">PERSONAL_02 // Full-Stack · AI · Live App</div>
+          <div class="proj-title">DietDeck — AI-Powered Nutrition Tracker</div>
+          <div class="proj-brief">Full-stack web app for tracking daily nutrition with live food search across 600k+ foods, AI estimates for regional dishes, and personalised diet planning.</div>
+        </div>
+        <div class="proj-tech">
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">HTML/CSS/JS</span>
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">Node.js</span>
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">Netlify Functions</span>
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">Groq / LLaMA 3.3</span>
+          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">USDA API</span>
+        </div>
+        <div class="proj-toggle" style="color:var(--green)"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
+        <div class="proj-expand"><div class="proj-expand-inner">
+          <div class="expand-row"><div class="expand-label" style="color:var(--green)">Problem</div><div class="expand-text">Existing nutrition apps don't support regional South Asian foods like biryani, dal chawal, or paratha. Users were stuck entering foods that didn't exist in any database.</div></div>
+          <div class="expand-row"><div class="expand-label" style="color:var(--green)">Approach</div><div class="expand-text">Built a two-layer food lookup: first queries USDA FoodData Central (600k+ foods) with debounced live autocomplete; if no match found, falls back to Groq's LLaMA 3.3 70B model to estimate nutrition for regional dishes. All API keys secured server-side via Netlify serverless functions.</div></div>
+          <div class="expand-row"><div class="expand-label" style="color:var(--green)">Key Features</div><div class="expand-text">Smart quantity system (piece-based foods get count + size selector, others get gram input with live nutrient rescaling) · Guest mode · Custom meal sections (Suhoor, Iftar, Pre-workout) · Weekly plan view with macro progress rings · Full user auth via localStorage.</div></div>
+          <div class="expand-row"><div class="expand-label" style="color:var(--green)">Tech Stack</div><div class="expand-text">Frontend: HTML5, CSS3, Vanilla JS, CSS Grid, Flexbox. Backend: Netlify Functions (Node.js serverless), USDA FoodData Central API, Groq API (LLaMA 3.3 70B). Storage: localStorage with per-user data isolation.</div></div>
+          <div class="expand-row"><div class="expand-label" style="color:var(--green)">Outcome</div><div class="expand-text">Fully deployed live app on Netlify. Secure API proxy ensures no keys are exposed in the browser. Works for both registered users and guests.</div></div>
+          <div class="expand-links">
+            <a href="https://dietdeck.netlify.app" target="_blank" class="expand-link" style="border-color:rgba(0,229,160,.3);color:var(--green)">Live App ↗</a>
+            <a href="https://github.com/sljamil/Dietdeck" target="_blank" class="expand-link gh">GitHub Repo ↗</a>
+          </div>
+        </div></div>
+      </div>
+
+    </div>
+
+    <!-- PROFESSIONAL -->
+    <div class="proj-cat-bar reveal"><span class="proj-cat-icon">💼</span><span class="proj-cat-title">PROFESSIONAL PROJECTS</span><span class="proj-cat-sub">// Qosain Scientific · LUMS</span></div>
+    <div class="projects-grid">
+
+      <div class="proj-card pro reveal" onclick="toggleCard(this)">
         <div class="proj-card-top"></div>
-        <div class="proj-card-head"><div class="proj-num">PRO_02 // Electrochemistry</div><div class="proj-title">DIY Potentiostat with Integrated GUI</div><div class="proj-brief">Low-cost electrochemical analysis instrument with real-time data visualization interface.</div></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_01 // Electrochemistry</div><div class="proj-title">DIY Potentiostat with Integrated GUI</div><div class="proj-brief">Low-cost electrochemical analysis instrument with real-time data visualization interface.</div></div>
         <div class="proj-tech"><span class="tag">Analog Design</span><span class="tag">PCB</span><span class="tag">GUI</span><span class="tag">Op-Amps</span></div>
         <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
         <div class="proj-expand"><div class="proj-expand-inner">
@@ -356,7 +405,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 
       <div class="proj-card pro reveal" onclick="toggleCard(this)">
         <div class="proj-card-top"></div>
-        <div class="proj-card-head"><div class="proj-num">PRO_03 // Biomedical</div><div class="proj-title">Blood Pressure Measurement Circuitry</div><div class="proj-brief">Signal conditioning and processing circuitry for extraction of physiological parameters from BP waveforms.</div></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_02 // Biomedical</div><div class="proj-title">Blood Pressure Measurement Circuitry</div><div class="proj-brief">Signal conditioning and processing circuitry for extraction of physiological parameters from BP waveforms.</div></div>
         <div class="proj-tech"><span class="tag">Signal Conditioning</span><span class="tag">Analog</span><span class="tag">PCB</span><span class="tag">Filters</span></div>
         <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
         <div class="proj-expand"><div class="proj-expand-inner">
@@ -367,7 +416,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 
       <div class="proj-card pro reveal" onclick="toggleCard(this)">
         <div class="proj-card-top"></div>
-        <div class="proj-card-head"><div class="proj-num">PRO_04 // Biophysics</div><div class="proj-title">Bioelectrical Response of Mimosa Pudica</div><div class="proj-brief">Circuitry to measure micro-volt bioelectrical signals of the sensitive plant under external stimuli.</div></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_03 // Biophysics</div><div class="proj-title">Bioelectrical Response of Mimosa Pudica</div><div class="proj-brief">Circuitry to measure micro-volt bioelectrical signals of the sensitive plant under external stimuli.</div></div>
         <div class="proj-tech"><span class="tag">Biophysics</span><span class="tag">Instrumentation</span><span class="tag">Low-Noise Amp</span></div>
         <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
         <div class="proj-expand"><div class="proj-expand-inner">
@@ -379,7 +428,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 
       <div class="proj-card pro reveal" onclick="toggleCard(this)">
         <div class="proj-card-top"></div>
-        <div class="proj-card-head"><div class="proj-num">PRO_05 // Physics Lab · LUMS</div><div class="proj-title">Magnetic Damping Experimental Setup</div><div class="proj-brief">Complete eddy current experimental apparatus for PhysLab at LUMS with full academic documentation.</div></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_04 // Physics Lab · LUMS</div><div class="proj-title">Magnetic Damping Experimental Setup</div><div class="proj-brief">Complete eddy current experimental apparatus for PhysLab at LUMS with full academic documentation.</div></div>
         <div class="proj-tech"><span class="tag">Instrumentation</span><span class="tag">Circuit Design</span><span class="tag">Documentation</span></div>
         <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
         <div class="proj-expand"><div class="proj-expand-inner">
@@ -390,7 +439,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 
       <div class="proj-card pro reveal" onclick="toggleCard(this)">
         <div class="proj-card-top"></div>
-        <div class="proj-card-head"><div class="proj-num">PRO_06 // Neuroscience Hardware</div><div class="proj-title">Action Potential Synthesizer</div><div class="proj-brief">Hardware-based synthesizer replicating biological action potentials using analog circuitry.</div></div>
+        <div class="proj-card-head"><div class="proj-num">PRO_05 // Neuroscience Hardware</div><div class="proj-title">Action Potential Synthesizer</div><div class="proj-brief">Hardware-based synthesizer replicating biological action potentials using analog circuitry.</div></div>
         <div class="proj-tech"><span class="tag">Analog</span><span class="tag">Simulation</span><span class="tag">Prototyping</span></div>
         <div class="proj-toggle"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
         <div class="proj-expand"><div class="proj-expand-inner">
@@ -517,10 +566,10 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
       <div class="contact-title">LET'S <span>CONNECT</span></div>
       <p style="color:var(--muted);max-width:480px;line-height:1.9;font-size:.88rem">Open to research collaborations, freelance electronics projects, and full-time roles in electronics engineering, instrumentation, or embedded systems.</p>
       <div class="contact-links">
-        <a href="mailto:jamalliaqat101ly@gmail.com" class="contact-link">✉ jamalliaqat101ly@gmail.com</a>
-        <a href="https://linkedin.com/in/jamal-liaqat" target="_blank" class="contact-link">LinkedIn</a>
+        <a href="/cdn-cgi/l/email-protection#84eee5e9e5e8e8ede5f5e5f0b5b4b5e8fdc4e3e9e5ede8aae7ebe9" class="contact-link">✉ <span class="__cf_email__" data-cfemail="c2a8a3afa3aeaeaba3b3a3b6f3f2f3aebb82a5afa3abaeeca1adaf">[email&#160;protected]</span></a>
+        <a href="https://linkedin.com/in/jamal-liaqat" target="_blank" class="contact-link">in LinkedIn</a>
         <a href="https://github.com/sljamil" target="_blank" class="contact-link">⌥ github.com/sljamil</a>
-        <a href="tel:+923444179001" class="contact-link">📞 +92 344 4179 001</a>
+        <a href="tel:+92344179001" class="contact-link">📞 +92 344 179 001</a>
       </div>
     </div>
   </div>
@@ -528,11 +577,11 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 
 <footer>
   <div>© 2025 JAMAL LIAQAT &nbsp;·&nbsp; ELECTRONICS ENGINEER &nbsp;·&nbsp; LAHORE, PAKISTAN</div>
-  <!-- <div class="bp-block">
+  <div class="bp-block">
     <span style="font-size:.55rem;color:var(--dim)">DRAWING NO.</span>
     <span style="color:var(--blue)">JL-PORTFOLIO-v2.0</span>
     <span style="font-size:.55rem;color:var(--dim)">BLUEPRINT DARK · REV.A</span>
-  </div> -->
+  </div>
 </footer>
 
 <script>
