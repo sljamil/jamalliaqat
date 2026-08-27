@@ -7,32 +7,32 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#d7d4d4;--bg2:#707070;--card:#a3acbe;--card2:#e8e3e3;
-  --border:rgb(88, 100, 114);--blue:#ffffff;--cyan:#003a46;
-  --white:#000000;--muted:#000000;--dim:#000000;
-  --orange:#9f0000;--green:#006a14;--grid:rgba(255, 255, 255, 0.05);
+  --bg:#d7d4d4;--bg2:#c2c2c2;--card:#ffffff;--card2:#eeeeee;
+  --border:rgb(150,158,168);--blue:#1155cc;--cyan:#0a5fa8;
+  --white:#111111;--muted:#3a3a3a;--dim:#666666;
+  --orange:#9f0000;--green:#006a14;--grid:rgba(17,17,17,0.05);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--white);font-family:'IBM Plex Sans',sans-serif;font-weight:300;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;z-index:0}
 nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:.9rem 3rem;background:rgba(9,21,42,0.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'IBM Plex Mono',monospace;font-size:1rem;font-weight:600;color:var(--blue);letter-spacing:3px}
+.nav-logo{font-family:'IBM Plex Mono',monospace;font-size:1rem;font-weight:600;color:#fff;letter-spacing:3px}
 .nav-links{display:flex;gap:1.8rem;list-style:none}
-.nav-links a{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:2px;color:var(--muted);text-decoration:none;text-transform:uppercase;transition:color .3s}
-.nav-links a:hover{color:var(--blue)}
+.nav-links a{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:2px;color:#b8c4d4;text-decoration:none;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover{color:#fff}
 section{position:relative;z-index:1}
 .wrap{max-width:1100px;margin:0 auto;padding:5rem 3rem}
 .sec-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:3rem}
 .sec-num{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--orange);letter-spacing:2px}
 .sec-title{font-family:'IBM Plex Mono',monospace;font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:600;color:var(--white);letter-spacing:2px}
-.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--blue),transparent);opacity:.3}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--blue),transparent);opacity:.4}
 
 /* HERO */
 #hero {
   min-height: 100vh;
   display: flex;
-  flex-direction: row; /* Overrides column to put image and text side-by-side */
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 2.5rem;
@@ -40,11 +40,7 @@ section{position:relative;z-index:1}
   max-width: 1100px;
   margin: 0 auto;
 }
-
-.hero-content {
-  flex: 1;
-}
-
+.hero-content { flex: 1; }
 .hero-tag {
   font-family: 'IBM Plex Mono', monospace;
   font-size: .7rem;
@@ -55,27 +51,18 @@ section{position:relative;z-index:1}
   opacity: 0;
   animation: fadeUp .8s .2s forwards;
 }
-
-.hero-tag::before {
-  content: '// ';
-  color: var(--orange);
-}
-
+.hero-tag::before { content: '// '; color: var(--orange); }
 .hero-name {
   font-family: 'IBM Plex Mono', monospace;
   font-size: clamp(2.5rem, 6vw, 5.5rem);
   font-weight: 600;
   line-height: 1;
-  color: #fff;
+  color: var(--white);
   letter-spacing: 2px;
   opacity: 0;
   animation: fadeUp .8s .4s forwards;
 }
-
-.hero-name span {
-  color: var(--blue);
-}
-
+.hero-name span { color: var(--blue); }
 .hero-sub {
   font-family: 'IBM Plex Mono', monospace;
   font-size: clamp(.85rem, 1.8vw, 1.1rem);
@@ -85,7 +72,6 @@ section{position:relative;z-index:1}
   opacity: 0;
   animation: fadeUp .8s .6s forwards;
 }
-
 .hero-desc {
   max-width: 580px;
   margin-top: 1.2rem;
@@ -95,7 +81,6 @@ section{position:relative;z-index:1}
   opacity: 0;
   animation: fadeUp .8s .8s forwards;
 }
-
 .hero-btns {
   display: flex;
   gap: 1rem;
@@ -104,7 +89,6 @@ section{position:relative;z-index:1}
   opacity: 0;
   animation: fadeUp .8s 1s forwards;
 }
-
 .btn {
   font-family: 'IBM Plex Mono', monospace;
   font-size: .72rem;
@@ -120,7 +104,6 @@ section{position:relative;z-index:1}
   position: relative;
   overflow: hidden;
 }
-
 .btn::before {
   content: '';
   position: absolute;
@@ -130,60 +113,35 @@ section{position:relative;z-index:1}
   transition: transform .3s;
   z-index: -1;
 }
+.btn:hover { color: #fff; }
+.btn:hover::before { transform: translateX(0); }
+.btn-o { border-color: var(--cyan); color: var(--cyan); }
+.btn-o::before { background: var(--cyan); }
+.btn-o:hover { color: #fff; }
 
-.btn:hover {
-  color: var(--bg);
-}
-
-.btn:hover::before {
-  transform: translateX(0);
-}
-
-.btn-o {
-  border-color: var(--cyan);
-  color: var(--cyan);
-}
-
-.btn-o::before {
-  background: var(--cyan);
-}
-
-/* AVATAR STYLES */
-.hero-avatar {
-  flex-shrink: 0;
-  opacity: 0;
-  animation: fadeUp .8s .4s forwards;
-}
-
+/* AVATAR */
+.hero-avatar { flex-shrink: 0; opacity: 0; animation: fadeUp .8s .4s forwards; }
 .hero-avatar img {
   width: 220px;
   height: 220px;
   border-radius: 50%;
   object-fit: cover;
-  
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  border: 3px solid var(--blue);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 
-/* RESPONSIVE LAYOUT FOR MOBILE */
 @media (max-width: 768px) {
-  #hero {
-    flex-direction: column-reverse;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .hero-btns {
-    justify-content: center;
-  }
+  #hero { flex-direction: column-reverse; justify-content: center; text-align: center; }
+  .hero-btns { justify-content: center; }
 }
 
 /* ABOUT */
-#about{background:rgba(74,158,255,.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#about{background:var(--card2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .about-grid{display:block}
 .about-text p{line-height:1.9;color:var(--muted);font-size:.9rem;margin-bottom:.9rem}
 .about-text p strong{color:var(--blue);font-weight:600}
 .about-stats{display:flex;gap:2rem;margin-top:1.5rem;flex-wrap:wrap}
-.stat{border-left:2px solid var(--blue);padding-left:1rem}
+.stat{border-left:3px solid var(--blue);padding-left:1rem}
 .stat-val{font-family:'IBM Plex Mono',monospace;font-size:1.5rem;font-weight:600;color:var(--blue);line-height:1}
 .stat-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:.3rem}
 
@@ -191,40 +149,40 @@ section{position:relative;z-index:1}
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.2rem}
 .skill-card{background:var(--card);border:1px solid var(--border);padding:1.4rem;transition:border-color .3s}
 .skill-card:hover{border-color:var(--blue)}
-.skill-card-title{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--cyan);letter-spacing:3px;text-transform:uppercase;margin-bottom:.9rem}
+.skill-card-title{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--blue);letter-spacing:3px;text-transform:uppercase;margin-bottom:.9rem}
 .tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.tag{font-family:'IBM Plex Mono',monospace;font-size:.65rem;padding:.25rem .6rem;border:1px solid var(--border);color:var(--white);letter-spacing:1px;background:rgba(74,158,255,.04);transition:all .2s}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:.65rem;padding:.25rem .6rem;border:1px solid var(--border);color:var(--white);letter-spacing:1px;background:rgba(17,17,17,.03);transition:all .2s}
 .tag:hover{border-color:var(--blue);color:var(--blue)}
 
 /* TIMELINE */
 .timeline{position:relative;padding-left:2rem}
-.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--blue),transparent);opacity:.3}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(180deg,var(--blue),transparent);opacity:.4}
 .tl-item{position:relative;padding-bottom:2.5rem}
 .tl-dot{position:absolute;left:-2.3rem;top:.3rem;width:9px;height:9px;border:1.5px solid var(--blue);background:var(--bg);transform:rotate(45deg)}
 .tl-date{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--orange);letter-spacing:2px;margin-bottom:.3rem}
-.tl-role{font-family:'IBM Plex Mono',monospace;font-size:.95rem;font-weight:600;color:#fff;margin-bottom:.2rem}
-.tl-company{font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--cyan);margin-bottom:.7rem;letter-spacing:1px}
+.tl-role{font-family:'IBM Plex Mono',monospace;font-size:.95rem;font-weight:600;color:var(--white);margin-bottom:.2rem}
+.tl-company{font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--blue);margin-bottom:.7rem;letter-spacing:1px}
 .tl-desc{color:var(--muted);font-size:.85rem;line-height:1.8}
 .tl-desc li{list-style:none;padding-left:1rem;position:relative;margin-bottom:.25rem}
 .tl-desc li::before{content:'▸ ';position:absolute;left:0;color:var(--blue)}
 
 /* WEB DEV */
-#webdev{background:rgba(0,212,255,.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+#webdev{background:var(--card2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .webdev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem}
 .web-card{background:var(--card);border:1px solid var(--border);padding:1.8rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
 .web-card:hover{border-color:var(--cyan);transform:translateY(-3px)}
 .web-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .3s}
 .web-card:hover::before{transform:scaleX(1)}
 .web-card-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--orange);letter-spacing:2px;margin-bottom:.7rem}
-.web-card-title{font-family:'IBM Plex Mono',monospace;font-size:1rem;font-weight:600;color:#fff;margin-bottom:.5rem}
+.web-card-title{font-family:'IBM Plex Mono',monospace;font-size:1rem;font-weight:600;color:var(--white);margin-bottom:.5rem}
 .web-card-desc{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:1rem}
 .web-screenshot{width:100%;height:130px;background:var(--card2);border:1px solid var(--border);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
 .web-screenshot-inner{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:2px;text-align:center}
 .browser-bar{position:absolute;top:0;left:0;right:0;height:24px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 .6rem;gap:.3rem}
 .b-dot{width:7px;height:7px;border-radius:50%}
 .web-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
-.web-link{display:inline-flex;align-items:center;gap:.4rem;font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--cyan);text-decoration:none;letter-spacing:1px;border:1px solid rgba(0,212,255,.3);padding:.4rem 1rem;transition:all .3s}
-.web-link:hover{background:var(--cyan);color:var(--bg)}
+.web-link{display:inline-flex;align-items:center;gap:.4rem;font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--blue);text-decoration:none;letter-spacing:1px;border:1px solid var(--blue);padding:.4rem 1rem;transition:all .3s}
+.web-link:hover{background:var(--blue);color:#fff}
 
 /* PROJECT CATEGORIES */
 .proj-cat-bar{display:flex;align-items:center;gap:.8rem;padding:.75rem 1.2rem;background:var(--card);border:1px solid var(--border);border-left:3px solid var(--blue);margin-bottom:1.2rem}
@@ -237,31 +195,14 @@ section{position:relative;z-index:1}
 .proj-cat-sub{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:1px;margin-left:auto}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.2rem;margin-bottom:3rem}
 
+/* GALLERY */
+.exp-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1.5rem;margin-bottom:1.5rem}
+.exp-img{width:100%;height:160px;object-fit:cover;border:1px solid var(--border);border-radius:4px;transition:transform .3s,border-color .3s}
+.exp-img:hover{transform:scale(1.05);border-color:var(--blue);box-shadow:0 4px 12px rgba(17,85,204,.2)}
+.exp-img-wrapper{position:relative}
+.exp-caption{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);text-align:center;margin-top:.5rem;letter-spacing:1px;line-height:1.4}
+
 /* EXPANDABLE CARDS */
-
-.exp-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.exp-img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  transition: transform .3s, border-color .3s;
-}
-
-.exp-img:hover {
-  transform: scale(1.05);
-  border-color: var(--blue);
-  box-shadow: 0 4px 12px rgba(74,158,255,.2);
-}
-
 .proj-card{background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden;cursor:pointer;transition:border-color .3s}
 .proj-card:hover{border-color:var(--blue)}
 .proj-card.fyp-c:hover{border-color:var(--orange)}
@@ -273,16 +214,16 @@ section{position:relative;z-index:1}
 .proj-card-head{padding:1.5rem 1.5rem 1rem}
 .proj-num{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--orange);letter-spacing:2px;margin-bottom:.6rem}
 .proj-card.sem-c .proj-num{color:var(--cyan)}
-.proj-title{font-family:'IBM Plex Mono',monospace;font-size:.88rem;font-weight:600;color:#fff;line-height:1.4;margin-bottom:.6rem}
+.proj-title{font-family:'IBM Plex Mono',monospace;font-size:.88rem;font-weight:600;color:var(--white);line-height:1.4;margin-bottom:.6rem}
 .proj-brief{font-size:.82rem;color:var(--muted);line-height:1.6}
 .proj-tech{display:flex;flex-wrap:wrap;gap:.35rem;padding:0 1.5rem .8rem}
 .proj-tech .tag{font-size:.6rem;padding:.2rem .5rem}
-.proj-card.sem-c .proj-tech .tag{border-color:rgba(0,212,255,.2);color:var(--cyan);background:rgba(0,212,255,.04)}
-.proj-card.fyp-c .proj-tech .tag{border-color:rgba(255,149,0,.2);color:var(--orange);background:rgba(255,149,0,.04)}
+.proj-card.sem-c .proj-tech .tag{border-color:rgba(10,95,168,.3);color:var(--cyan);background:rgba(10,95,168,.06)}
+.proj-card.fyp-c .proj-tech .tag{border-color:rgba(159,0,0,.25);color:var(--orange);background:rgba(159,0,0,.05)}
 .proj-toggle{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.5rem;border-top:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--blue);letter-spacing:1px;transition:background .2s}
 .proj-card.fyp-c .proj-toggle{color:var(--orange)}
 .proj-card.sem-c .proj-toggle{color:var(--cyan)}
-.proj-toggle:hover{background:rgba(74,158,255,.05)}
+.proj-toggle:hover{background:rgba(17,85,204,.06)}
 .toggle-icon{transition:transform .3s;font-size:.8rem}
 .proj-card.open .toggle-icon{transform:rotate(180deg)}
 .proj-expand{max-height:0;overflow:hidden;transition:max-height .45s ease}
@@ -294,8 +235,8 @@ section{position:relative;z-index:1}
 .expand-text{font-size:.82rem;color:var(--muted);line-height:1.7}
 .expand-links{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem}
 .expand-link{font-family:'IBM Plex Mono',monospace;font-size:.65rem;padding:.35rem .9rem;text-decoration:none;letter-spacing:1px;border:1px solid var(--border);color:var(--blue);transition:all .3s}
-.expand-link:hover{background:var(--blue);color:var(--bg)}
-.expand-link.gh{border-color:rgba(255,255,255,.2);color:var(--white)}
+.expand-link:hover{background:var(--blue);color:#fff}
+.expand-link.gh{border-color:rgba(17,17,17,.2);color:var(--white)}
 .expand-link.gh:hover{background:var(--white);color:var(--bg)}
 .fyp-full{grid-column:1/-1;max-width:740px}
 
@@ -304,7 +245,7 @@ section{position:relative;z-index:1}
 .edu-card{background:var(--card);border:1px solid var(--border);padding:1.6rem;position:relative}
 .edu-card::after{content:attr(data-year);position:absolute;top:1.2rem;right:1.2rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--orange);letter-spacing:2px}
 .edu-degree{font-family:'IBM Plex Mono',monospace;font-size:.85rem;font-weight:600;color:var(--blue);margin-bottom:.4rem;line-height:1.4}
-.edu-school{font-size:.95rem;font-weight:600;color:#fff;margin-bottom:.3rem}
+.edu-school{font-size:.95rem;font-weight:600;color:var(--white);margin-bottom:.3rem}
 .edu-loc{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:1px}
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.9rem;margin-top:2rem}
 .cert-item{display:flex;gap:.9rem;align-items:flex-start;padding:1.1rem;background:var(--card);border:1px solid var(--border);transition:border-color .3s}
@@ -316,17 +257,17 @@ section{position:relative;z-index:1}
 /* PUBLICATIONS */
 .pub-list{display:flex;flex-direction:column;gap:.9rem}
 .pub-item{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--cyan);padding:1.4rem;transition:box-shadow .3s}
-.pub-item:hover{box-shadow:-4px 0 20px rgba(0,212,255,.12)}
-.pub-title{font-size:.92rem;font-weight:600;color:#fff;margin-bottom:.35rem;line-height:1.5}
+.pub-item:hover{box-shadow:-4px 0 20px rgba(10,95,168,.12)}
+.pub-title{font-size:.92rem;font-weight:600;color:var(--white);margin-bottom:.35rem;line-height:1.5}
 .pub-meta{font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--cyan);letter-spacing:1px}
 
 /* CONTACT */
 .contact-inner{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.8rem}
-.contact-title{font-family:'IBM Plex Mono',monospace;font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:600;color:#fff}
+.contact-title{font-family:'IBM Plex Mono',monospace;font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:600;color:var(--white)}
 .contact-title span{color:var(--blue)}
 .contact-links{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center}
 .contact-link{display:flex;align-items:center;gap:.5rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);text-decoration:none;letter-spacing:1px;padding:.65rem 1.3rem;border:1px solid var(--border);transition:all .3s}
-.contact-link:hover{color:var(--blue);border-color:var(--blue)}
+.contact-link:hover{color:#fff;border-color:var(--blue);background:var(--blue)}
 
 /* FOOTER */
 footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:2px;border-top:1px solid var(--border);position:relative;z-index:1}
@@ -340,28 +281,8 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 @media(max-width:700px){
   nav{padding:.9rem 1.5rem}.nav-links{display:none}
   .wrap{padding:4rem 1.5rem}#hero{padding:7rem 1.5rem 3rem}
-  .about-grid{grid-template-columns:1fr}.avatar-frame{margin:0 auto}
+  .about-grid{grid-template-columns:1fr}
   .webdev-grid{grid-template-columns:1fr}.fyp-full{grid-column:1}
-}
-
-/* Image Captions */
-.exp-img-wrapper {
-  position: relative;
-}
-.exp-img:hover {
-  transform: scale(1.05);
-  border-color: var(--blue);
-  box-shadow: 0 4px 12px rgba(74,158,255,.2);
-}
-
-.exp-caption {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: .65rem;
-  color: var(--muted);
-  text-align: center;
-  margin-top: .5rem;
-  letter-spacing: 1px;
-  line-height: 1.4;
 }
 </style>
 </head>
@@ -393,7 +314,6 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
       <a href="https://github.com/sljamil" target="_blank" class="btn btn-o">GitHub ↗</a>
     </div>
   </div>
-  
   <div class="hero-avatar">
     <img src="image.png" alt="Jamal Liaqat" />
   </div>
@@ -409,7 +329,6 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
         <p>I am passionate about designing electronics circuits and hardware systems for prototyping and testing. I have experiance in circuit design, PCB fabrication, firmware for embedded systems and instrumentation.</p>
         <div class="about-stats">
           <div class="stat"><div class="stat-val">2</div><div class="stat-label">Years Exp.</div></div>
-          <!-- <div class="stat"><div class="stat-val">8+</div><div class="stat-label">Projects</div></div> -->
           <div class="stat"><div class="stat-val">NUST</div><div class="stat-label">BS Avionics</div></div>
           <div class="stat"><div class="stat-val">PK</div><div class="stat-label">Lahore</div></div>
         </div>
@@ -433,7 +352,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience" style="background:rgba(74,158,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<section id="experience" style="background:var(--card2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="wrap">
     <div class="sec-header reveal"><span class="sec-num">// 03</span><h2 class="sec-title">EXPERIENCE</h2><div class="sec-line"></div></div>
     <div class="timeline">
@@ -444,13 +363,9 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
       <div class="tl-company">Aga Khan University — Karachi, Pakistan</div>
       <div class="tl-desc" style="color:var(--muted);font-size:.85rem;line-height:1.8">
         <p style="margin-bottom:.9rem">The VCG Device Prototype I represents locally designed, low-cost innovation—a meaningful step toward accessible cardiac care in low-middle-income countries. I'm genuinely proud to be part of this team working toward <strong>Professor Cameruddin Vellani's</strong> vision: delivering a low-cost diagnostic tool based on AKU's patented vectorcardiography method for early detection of coronary heart disease, still the leading cause of death in Pakistan and globally.</p>
-    
         <p style="margin-bottom:.9rem">This project emerged from collaboration between Aga Khan University and PhysLab, LUMS. Initially led by Muhammad Nasir, I stepped into technical leadership to systematically debug and optimize the hardware and firmware stack—resolving core integration issues to bring the prototype to clinical readiness.</p>
-    
         <p style="margin-bottom:.9rem">My role was design engineer for the prototype: developing the complete hardware stack (analog circuits, digitizer, firmware, and user interface) under <strong>Dr. Sabieh Anwar's</strong> supervision at LUMS. <strong>Hira Mehtab</strong> represented AKU, ensuring we met clinical specifications throughout development.</p>
-    
         <p style="margin-bottom:.9rem">The device records 3D cardiac electrophysiological signals using orthogonal lead ECG (X, Y, Z leads) to detect myocardial ischemia with and without stress. It's now ready for preclinical evaluation at Aga Khan University.</p>
-    
         <p>This work wouldn't have been possible without an incredible team. At AKU, Dr. Zainab Samad, Dr. Satwat Hashmi, and research nurses Sonia Ayaz and Shazana Zulfiqar provided clinical expertise and support. At LUMS, technician Muhammad Ayyaz and facilitator Ali Hassan were instrumental in bringing the hardware to life.</p>
        </div>
       </div>
@@ -458,6 +373,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
         <img src="aga khan/2_day_2_4.jpg" alt="VCG documentation" class="exp-img">
         <img src="aga khan/vcg.jpg" alt="VCG prototype" class="exp-img">
         <img src="aga khan/vcg.jpeg" alt="VCG circuit" class="exp-img">
+        <img src="aga khan/vcg2.jpg" alt="VCG circuit" class="exp-img">
         <img src="aga khan/1_day_1.jpg" alt="VCG setup" class="exp-img">
         <img src="aga khan/1_day_1_1.jpg" alt="VCG testing" class="exp-img">
         <img src="aga khan/2_day_2_6.jpg" alt="VCG documentation" class="exp-img">
@@ -497,7 +413,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
         </div>
         <div class="web-card-title">Qosain Scientific</div>
         <div class="web-card-desc">Full e-commerce website designed and built from scratch. Handles product listings, orders, and content. Actively maintained with SEO optimization and performance improvements.</div>
-        <div class="web-tags"><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">WordPress</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">Elementor</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">WooCommerce</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">On-page SEO</span></div>
+        <div class="web-tags"><span class="tag" style="border-color:rgba(10,95,168,.3);color:var(--cyan)">WordPress</span><span class="tag" style="border-color:rgba(10,95,168,.3);color:var(--cyan)">Elementor</span><span class="tag" style="border-color:rgba(10,95,168,.3);color:var(--cyan)">WooCommerce</span><span class="tag" style="border-color:rgba(10,95,168,.3);color:var(--cyan)">On-page SEO</span></div>
         <a href="https://www.qosainscientific.com" target="_blank" class="web-link">Visit Site ↗</a>
       </div>
       <div class="web-card reveal">
@@ -513,7 +429,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
         </div>
         <div class="web-card-title">github.com/sljamil</div>
         <div class="web-card-desc">Open source projects including Duino.ai and DietDeck — hardware-meets-AI and full-stack web projects. More in progress.</div>
-        <div class="web-tags"><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">C++ / Arduino</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">HTML / JS</span><span class="tag" style="border-color:rgba(0,212,255,.2);color:var(--cyan)">AI Integration</span></div>
+        <div class="web-tags"><span class="tag" style="border-color:rgba(10,95,168,.3);color:var(--cyan)">C++ / Arduino</span><span class="tag" style="border-color:rgba(10,95,168,.3);color:var(--cyan)">HTML / JS</span><span class="tag" style="border-color:rgba(10,95,168,.3);color:var(--cyan)">AI Integration</span></div>
         <a href="https://github.com/sljamil" target="_blank" class="web-link">View GitHub ↗</a>
       </div>
 
@@ -532,14 +448,14 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
         <div class="web-card-title">DietDeck</div>
         <div class="web-card-desc">Full-stack nutrition tracker with live food search across 600k+ USDA foods, AI estimates for regional dishes (biryani, paratha, dal), personalised meal planning and weekly progress views.</div>
         <div class="web-tags">
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">HTML/CSS/JS</span>
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">Node.js</span>
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">Netlify Functions</span>
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">LLaMA 3.3 / Groq</span>
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green)">USDA API</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green)">HTML/CSS/JS</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green)">Node.js</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green)">Netlify Functions</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green)">LLaMA 3.3 / Groq</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green)">USDA API</span>
         </div>
         <div style="display:flex;gap:.7rem;flex-wrap:wrap">
-          <a href="https://dietdeck.netlify.app" target="_blank" class="web-link" style="border-color:rgba(0,229,160,.3);color:var(--green)">Live App ↗</a>
+          <a href="https://dietdeck.netlify.app" target="_blank" class="web-link" style="border-color:var(--green);color:var(--green)">Live App ↗</a>
           <a href="https://github.com/sljamil/Dietdeck" target="_blank" class="web-link">GitHub ↗</a>
         </div>
       </div>
@@ -549,7 +465,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" style="background:rgba(74,158,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+<section id="projects" style="background:var(--card2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
   <div class="wrap">
     <div class="sec-header reveal"><span class="sec-num">// 05</span><h2 class="sec-title">PROJECTS</h2><div class="sec-line"></div></div>
 
@@ -579,11 +495,11 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
           <div class="proj-brief">Full-stack web app for tracking daily nutrition with live food search across 600k+ foods, AI estimates for regional dishes, and personalised diet planning.</div>
         </div>
         <div class="proj-tech">
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">HTML/CSS/JS</span>
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">Node.js</span>
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">Netlify Functions</span>
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">Groq / LLaMA 3.3</span>
-          <span class="tag" style="border-color:rgba(0,229,160,.2);color:var(--green);background:rgba(0,229,160,.04)">USDA API</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green);background:rgba(0,106,20,.05)">HTML/CSS/JS</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green);background:rgba(0,106,20,.05)">Node.js</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green);background:rgba(0,106,20,.05)">Netlify Functions</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green);background:rgba(0,106,20,.05)">Groq / LLaMA 3.3</span>
+          <span class="tag" style="border-color:rgba(0,106,20,.25);color:var(--green);background:rgba(0,106,20,.05)">USDA API</span>
         </div>
         <div class="proj-toggle" style="color:var(--green)"><span>DETAILS</span><span class="toggle-icon">▼</span></div>
         <div class="proj-expand"><div class="proj-expand-inner">
@@ -593,7 +509,7 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
           <div class="expand-row"><div class="expand-label" style="color:var(--green)">Tech Stack</div><div class="expand-text">Frontend: HTML5, CSS3, Vanilla JS, CSS Grid, Flexbox. Backend: Netlify Functions (Node.js serverless), USDA FoodData Central API, Groq API (LLaMA 3.3 70B). Storage: localStorage with per-user data isolation.</div></div>
           <div class="expand-row"><div class="expand-label" style="color:var(--green)">Outcome</div><div class="expand-text">Fully deployed live app on Netlify. Secure API proxy ensures no keys are exposed in the browser. Works for both registered users and guests.</div></div>
           <div class="expand-links">
-            <a href="https://dietdeck.netlify.app" target="_blank" class="expand-link" style="border-color:rgba(0,229,160,.3);color:var(--green)">Live App ↗</a>
+            <a href="https://dietdeck.netlify.app" target="_blank" class="expand-link" style="border-color:var(--green);color:var(--green)">Live App ↗</a>
             <a href="https://github.com/sljamil/Dietdeck" target="_blank" class="expand-link gh">GitHub Repo ↗</a>
           </div>
         </div></div>
@@ -762,19 +678,6 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
   </div>
 </section>
 
-<!-- PUBLICATIONS -->
-<!-- 
-<section id="publications" style="background:rgba(74,158,255,.015);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-  <div class="wrap">
-    <div class="sec-header reveal"><span class="sec-num">// 07</span><h2 class="sec-title">PUBLICATIONS</h2><div class="sec-line"></div></div>
-    <div class="pub-list">
-      <div class="pub-item reveal"><div class="pub-title">Add your publication title here — update with your actual paper</div><div class="pub-meta">Journal / Conference &nbsp;·&nbsp; Year &nbsp;·&nbsp; Authors</div></div>
-      <div class="pub-item reveal"><div class="pub-title">Add second publication title here</div><div class="pub-meta">Journal / Conference &nbsp;·&nbsp; Year &nbsp;·&nbsp; Authors</div></div>
-    </div>
-    <p style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:1.2rem;letter-spacing:1px">// Replace placeholder entries above with your actual publications before going live.</p>
-  </div>
-</section>
--->
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
