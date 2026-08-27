@@ -7,10 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#09152a;--bg2:#0d1e38;--card:#0f2040;--card2:#122448;
-  --border:rgba(74,158,255,0.15);--blue:#4a9eff;--cyan:#00d4ff;
-  --white:#e8f4ff;--muted:#5a88b8;--dim:#2a4a72;
-  --orange:#ff9500;--green:#00e5a0;--grid:rgba(74,158,255,0.05);
+  --bg:#d7d4d4;--bg2:#707070;--card:#a3acbe;--card2:#e8e3e3;
+  --border:rgb(88, 100, 114);--blue:#ffffff;--cyan:#003a46;
+  --white:#000000;--muted:#000000;--dim:#000000;
+  --orange:#9f0000;--green:#006a14;--grid:rgba(255, 255, 255, 0.05);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -29,18 +29,153 @@ section{position:relative;z-index:1}
 .sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--blue),transparent);opacity:.3}
 
 /* HERO */
-#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 3rem 4rem;max-width:1100px;margin:0 auto}
-.hero-tag{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:4px;color:var(--cyan);text-transform:uppercase;margin-bottom:1.2rem;opacity:0;animation:fadeUp .8s .2s forwards}
-.hero-tag::before{content:'// ';color:var(--orange)}
-.hero-name{font-family:'IBM Plex Mono',monospace;font-size:clamp(2.5rem,6vw,5.5rem);font-weight:600;line-height:1;color:#fff;letter-spacing:2px;opacity:0;animation:fadeUp .8s .4s forwards}
-.hero-name span{color:var(--blue)}
-.hero-sub{font-family:'IBM Plex Mono',monospace;font-size:clamp(.85rem,1.8vw,1.1rem);color:var(--cyan);margin-top:.8rem;letter-spacing:2px;opacity:0;animation:fadeUp .8s .6s forwards}
-.hero-desc{max-width:580px;margin-top:1.2rem;line-height:1.9;color:var(--muted);font-size:.9rem;opacity:0;animation:fadeUp .8s .8s forwards}
-.hero-btns{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;opacity:0;animation:fadeUp .8s 1s forwards}
-.btn{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:2px;padding:.7rem 1.8rem;text-decoration:none;text-transform:uppercase;border:1px solid var(--blue);color:var(--blue);background:transparent;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
-.btn::before{content:'';position:absolute;inset:0;background:var(--blue);transform:translateX(-101%);transition:transform .3s;z-index:-1}
-.btn:hover{color:var(--bg)}.btn:hover::before{transform:translateX(0)}
-.btn-o{border-color:var(--cyan);color:var(--cyan)}.btn-o::before{background:var(--cyan)}
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row; /* Overrides column to put image and text side-by-side */
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  padding: 8rem 3rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: 4px;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: fadeUp .8s .2s forwards;
+}
+
+.hero-tag::before {
+  content: '// ';
+  color: var(--orange);
+}
+
+.hero-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 600;
+  line-height: 1;
+  color: #fff;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeUp .8s .4s forwards;
+}
+
+.hero-name span {
+  color: var(--blue);
+}
+
+.hero-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: clamp(.85rem, 1.8vw, 1.1rem);
+  color: var(--cyan);
+  margin-top: .8rem;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeUp .8s .6s forwards;
+}
+
+.hero-desc {
+  max-width: 580px;
+  margin-top: 1.2rem;
+  line-height: 1.9;
+  color: var(--muted);
+  font-size: .9rem;
+  opacity: 0;
+  animation: fadeUp .8s .8s forwards;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp .8s 1s forwards;
+}
+
+.btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .72rem;
+  letter-spacing: 2px;
+  padding: .7rem 1.8rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  background: transparent;
+  cursor: pointer;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  transform: translateX(-101%);
+  transition: transform .3s;
+  z-index: -1;
+}
+
+.btn:hover {
+  color: var(--bg);
+}
+
+.btn:hover::before {
+  transform: translateX(0);
+}
+
+.btn-o {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+.btn-o::before {
+  background: var(--cyan);
+}
+
+/* AVATAR STYLES */
+.hero-avatar {
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeUp .8s .4s forwards;
+}
+
+.hero-avatar img {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+/* RESPONSIVE LAYOUT FOR MOBILE */
+@media (max-width: 768px) {
+  #hero {
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .hero-btns {
+    justify-content: center;
+  }
+}
 
 /* ABOUT */
 #about{background:rgba(74,158,255,.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -103,6 +238,30 @@ section{position:relative;z-index:1}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.2rem;margin-bottom:3rem}
 
 /* EXPANDABLE CARDS */
+
+.exp-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.exp-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  transition: transform .3s, border-color .3s;
+}
+
+.exp-img:hover {
+  transform: scale(1.05);
+  border-color: var(--blue);
+  box-shadow: 0 4px 12px rgba(74,158,255,.2);
+}
+
 .proj-card{background:var(--card);border:1px solid var(--border);position:relative;overflow:hidden;cursor:pointer;transition:border-color .3s}
 .proj-card:hover{border-color:var(--blue)}
 .proj-card.fyp-c:hover{border-color:var(--orange)}
@@ -184,6 +343,26 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
   .about-grid{grid-template-columns:1fr}.avatar-frame{margin:0 auto}
   .webdev-grid{grid-template-columns:1fr}.fyp-full{grid-column:1}
 }
+
+/* Image Captions */
+.exp-img-wrapper {
+  position: relative;
+}
+.exp-img:hover {
+  transform: scale(1.05);
+  border-color: var(--blue);
+  box-shadow: 0 4px 12px rgba(74,158,255,.2);
+}
+
+.exp-caption {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: .65rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: .5rem;
+  letter-spacing: 1px;
+  line-height: 1.4;
+}
 </style>
 </head>
 <body>
@@ -204,14 +383,19 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-tag">Electronics Engineer</div>
-  <h1 class="hero-name">JAMAL <span>LIAQAT</span></h1>
-  <div class="hero-sub">Research Associate</div>
-  <p class="hero-desc">Avionics Engineer with background in electronics, communication, RF and microwave. With experience in instrumentation development, circuit design, PCB design and biomedical and physiological measurement systems. I am interested in designing electronics system and hardware development.</p>
-  <div class="hero-btns">
-    <a href="#projects" class="btn">View Projects</a>
-    <a href="#contact" class="btn btn-o">Get In Touch</a>
-    <a href="https://github.com/sljamil" target="_blank" class="btn btn-o">GitHub ↗</a>
+  <div class="hero-content">
+    <div class="hero-tag">Electronics Engineer</div>
+    <h1 class="hero-name">JAMAL <span>LIAQAT</span></h1>
+    <div class="hero-sub">Research Associate at Qosain Scientific</div>
+    <div class="hero-btns">
+      <a href="#projects" class="btn">View Projects</a>
+      <a href="#contact" class="btn btn-o">Get In Touch</a>
+      <a href="https://github.com/sljamil" target="_blank" class="btn btn-o">GitHub ↗</a>
+    </div>
+  </div>
+  
+  <div class="hero-avatar">
+    <img src="image.png" alt="Jamal Liaqat" />
   </div>
 </section>
 
@@ -221,12 +405,11 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
     <div class="sec-header reveal"><span class="sec-num">// 01</span><h2 class="sec-title">ABOUT ME</h2><div class="sec-line"></div></div>
     <div class="about-grid reveal">
       <div class="about-text">
-        <p>I'm <strong>Jamal Liaqat</strong>, an Electronics Engineer and Research Associate at <strong>Qosain Scientific</strong>, Lahore. I hold a BS in Avionics Engineering from the <strong>College of Aeronautical Engineering, NUST</strong>.</p>
-        <p>My work sits at the intersection of analog electronics, biomedical instrumentation, and embedded systems — designing circuits that measure the physical world with precision, from blood pressure waveforms to bioelectrical plant signals.</p>
-        <p>Beyond hardware, I build for the web: I designed and maintain <strong>qosainscientific.com</strong> and create personal projects that bridge AI and hardware — like <strong>Duino.ai</strong>, an Arduino controlled entirely by AI prompts.</p>
+        <p>I am an Avionics Engineer and done my Bachelor's degree from the <strong>National University of Sciences and Technology(NUST)</strong>.</p>
+        <p>I am passionate about designing electronics circuits and hardware systems for prototyping and testing. I have experiance in circuit design, PCB fabrication, firmware for embedded systems and instrumentation.</p>
         <div class="about-stats">
-          <div class="stat"><div class="stat-val">2+</div><div class="stat-label">Years Exp.</div></div>
-          <div class="stat"><div class="stat-val">8+</div><div class="stat-label">Projects</div></div>
+          <div class="stat"><div class="stat-val">2</div><div class="stat-label">Years Exp.</div></div>
+          <!-- <div class="stat"><div class="stat-val">8+</div><div class="stat-label">Projects</div></div> -->
           <div class="stat"><div class="stat-val">NUST</div><div class="stat-label">BS Avionics</div></div>
           <div class="stat"><div class="stat-val">PK</div><div class="stat-label">Lahore</div></div>
         </div>
@@ -254,8 +437,40 @@ footer{text-align:center;padding:2rem;font-family:'IBM Plex Mono',monospace;font
   <div class="wrap">
     <div class="sec-header reveal"><span class="sec-num">// 03</span><h2 class="sec-title">EXPERIENCE</h2><div class="sec-line"></div></div>
     <div class="timeline">
-      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">SEP 2025 — PRESENT</div><div class="tl-role">Research Associate / Electronics Engineer</div><div class="tl-company">Qosain Scientific — Lahore, Pakistan</div><ul class="tl-desc"><li>Analog circuit design, PCB design and fabrication, biomedical circuits</li><li>Microcontroller programming and circuit interfacing</li><li>Electronics troubleshooting, debugging and quality assurance</li><li>3D modelling for product prototyping (SolidWorks / Fusion 360)</li><li>Designed low-cost DIY Potentiostat with integrated GUI</li><li>Developed blood pressure measurement circuitry with signal conditioning</li><li>Developed circuitry measuring bioelectrical responses of Mimosa pudica</li></ul></div>
-      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">JAN 2025 — AUG 2025</div><div class="tl-role">Instrument Developer</div><div class="tl-company">Qosain Scientific — Lahore, Pakistan</div><ul class="tl-desc"><li>Designed experimental setups for PhysLab (electronics & instrumentation)</li><li>Developed and validated hardware-based action potential synthesizer</li><li>Designed qosainscientific.com using WordPress, Elementor & WooCommerce</li><li>Applied on-page SEO, plugin integration, maintenance & optimization</li></ul></div>
+      <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-date">APR 2026 — AUG 2026</div>
+      <div class="tl-role">Research Associate</div>
+      <div class="tl-company">Aga Khan University — Karachi, Pakistan</div>
+      <div class="tl-desc" style="color:var(--muted);font-size:.85rem;line-height:1.8">
+        <p style="margin-bottom:.9rem">The VCG Device Prototype I represents locally designed, low-cost innovation—a meaningful step toward accessible cardiac care in low-middle-income countries. I'm genuinely proud to be part of this team working toward <strong>Professor Cameruddin Vellani's</strong> vision: delivering a low-cost diagnostic tool based on AKU's patented vectorcardiography method for early detection of coronary heart disease, still the leading cause of death in Pakistan and globally.</p>
+    
+        <p style="margin-bottom:.9rem">This project emerged from collaboration between Aga Khan University and PhysLab, LUMS. Initially led by Muhammad Nasir, I stepped into technical leadership to systematically debug and optimize the hardware and firmware stack—resolving core integration issues to bring the prototype to clinical readiness.</p>
+    
+        <p style="margin-bottom:.9rem">My role was design engineer for the prototype: developing the complete hardware stack (analog circuits, digitizer, firmware, and user interface) under <strong>Dr. Sabieh Anwar's</strong> supervision at LUMS. <strong>Hira Mehtab</strong> represented AKU, ensuring we met clinical specifications throughout development.</p>
+    
+        <p style="margin-bottom:.9rem">The device records 3D cardiac electrophysiological signals using orthogonal lead ECG (X, Y, Z leads) to detect myocardial ischemia with and without stress. It's now ready for preclinical evaluation at Aga Khan University.</p>
+    
+        <p>This work wouldn't have been possible without an incredible team. At AKU, Dr. Zainab Samad, Dr. Satwat Hashmi, and research nurses Sonia Ayaz and Shazana Zulfiqar provided clinical expertise and support. At LUMS, technician Muhammad Ayyaz and facilitator Ali Hassan were instrumental in bringing the hardware to life.</p>
+       </div>
+      </div>
+        <div class="exp-gallery">
+        <img src="aga khan/2_day_2_4.jpg" alt="VCG documentation" class="exp-img">
+        <img src="aga khan/vcg.jpg" alt="VCG prototype" class="exp-img">
+        <img src="aga khan/vcg.jpeg" alt="VCG circuit" class="exp-img">
+        <img src="aga khan/1_day_1.jpg" alt="VCG setup" class="exp-img">
+        <img src="aga khan/1_day_1_1.jpg" alt="VCG testing" class="exp-img">
+        <img src="aga khan/2_day_2_6.jpg" alt="VCG documentation" class="exp-img">
+        <div class="exp-img-wrapper">
+         <img src="aga khan/vcg_prtp_rslt.JPG" alt="VCG results" class="exp-img">
+         <div class="exp-caption">Prototype results</div>
+       </div>
+       <div class="exp-img-wrapper">
+        <img src="aga khan/vcg_biopac_rslt.JPG" alt="VCG documentation" class="exp-img">
+         <div class="exp-caption">BioPac results</div>
+       </div>
+      </div></div>
+      <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">JAN 2025 — AUG 2026</div><div class="tl-role">Research Associate / Electronics Engineer</div><div class="tl-company">Qosain Scientific — Lahore, Pakistan</div><ul class="tl-desc"><li>Analog circuit design, PCB design and fabrication, biomedical circuits</li><li>Microcontroller programming and circuit interfacing</li><li>Electronics troubleshooting, debugging and quality assurance</li><li>3D modelling for product prototyping (SolidWorks / Fusion 360)</li><li>Designed low-cost DIY Potentiostat with integrated GUI</li><li>Developed blood pressure measurement circuitry with signal conditioning</li><li>Developed circuitry measuring bioelectrical responses of Mimosa pudica</li></ul></div>
       <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">MAY 2025 — JUN 2025</div><div class="tl-role">Research Assistant</div><div class="tl-company">LUMS — PhysLab, Lahore</div><ul class="tl-desc"><li>Design, calibration & validation of experimental physics systems</li><li>Supervised by Dr. Sabieh Anwar</li><li>Magnetic damping (eddy currents) experimental setup with full documentation</li></ul></div>
       <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">APR 2023</div><div class="tl-role">Electronics Engineering Intern</div><div class="tl-company">Electrical Engineering Services — Lahore</div><ul class="tl-desc"><li>Hands-on electronics engineering internship</li></ul></div>
       <div class="tl-item reveal"><div class="tl-dot"></div><div class="tl-date">SEP 2022</div><div class="tl-role">Avionics Engineering Intern</div><div class="tl-company">PAC Kamra — Attock, Pakistan</div><ul class="tl-desc"><li>Avionics systems internship at Pakistan Aeronautical Complex</li></ul></div>
